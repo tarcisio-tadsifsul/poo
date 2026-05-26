@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    1. Crie uma classe base chamada Publicacao:
+        
+        Atributos:
+        - id: int 
+        - titulo: string
+        - autor: string
+        
+        Métodos:
+        + exibirFicha( ): que retorna uma string com título e o autor.
+    ---------------------------------------------------------------------------
+    2. Subclasse Livro que herda de Publicacao:
+        
+        Atributos:
+        - isbn: string 
+        - numeroPaginas: int
+        
+        Métodos:
+        + exibirFicha(): sobrescrever a hierarquia acima,
+                         concatenando ISBN e número de páginas.
+    ---------------------------------------------------------------------------
+    3. Subclasse LivroFisico que herda de Livro:
+    
+        Atributos:
+        - localizacaoEstante: string
+        - pesoGramas: int
+        
+        Métodos:
+        + calcularfrete(double distanciaKm): que retorna o frete baseado no peso
+                                             Ex.:(peso * km * 0,05)
+        + exibirFicha(): que sobrescrever a hierarquia acima,
+                         adicionando localizacao e peso
+    ---------------------------------------------------------------------------   
+    4. Subclasse Ebook que herda de Livro:
+        
+        Atributos:
+        - tamanhoMB: double
+        - formatoArquivo: string
+        
+        Métodos:
+        + gerarLinkDownload( ): que retorna uma string simulando um link
+                                Ex.: https://biblioteca.com/download/titulo) + exibirFicha( )
+                                que sobrescreva o método da hierarquia acima,
+                                adicionando o tamanho e formato.
+  </body>
+</html>

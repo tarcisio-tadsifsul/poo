@@ -1,0 +1,72 @@
+/*
+  Crie um objeto para representar uma Musica
+  1. Esse objeto deve conter os **atributos privados**
+    - titulo
+    - artista
+    - duração em segundos.
+
+  2. Implemente os respectivos métodos get/set com validações apropriadas.
+
+  3. Em seguida, crie uma classe Playlist
+     que possua um vetor de objetos do tipo Musica com capacidade para 5 músicas.
+
+  4. Esta classe deve possuir um método para calcularTempoTotal(),
+  que percorre o vetor e retorna a soma da duração de todas as músicas em minutos.
+
+  5. Na classe principal, o usuário deve cadastrar as músicas pelo teclado e o sistema deve exibir o tempo total da playlist e a lista de músicas cadastradas.
+ */
+ 
+ SINTAXE DO MÉTODO EM JAVA
+ 
+ modificadorAcesso tipoRetorno nomeDoMetodo(tipoParametro parametro1, tipoParametro parametro2) {
+    // Corpo do método: instruções e lógica
+    return valor; // Obrigatório se o tipo de retorno não for void
+}
+
+public void exibirMensagem() {
+    System.out.println("Olá, bem-vindo ao Java!");
+}
+ 
+Componentes do Método
+
+Modificador de Acesso: Define quem pode usar o método (ex: public, private, protected). O modificador public permite acesso de qualquer outra classe.
+
+Tipo de Retorno: Define o tipo de dado que o método devolve. Se o método não devolve nada, usa-se a palavra-chave void.
+
+Nome do Método: Deve seguir o padrão camelCase (ex: calcularSoma).
+
+Parâmetros: Variáveis locais que recebem valores quando o método é chamado. Ficam entre parênteses e são separados por vírgulas.
+
+Corpo do Método: Bloco de código delimitado por chaves {} que contém a lógica a ser executada.
+
+Comando return: Usado para enviar o valor de volta para quem chamou o método. É obrigatório para qualquer tipo diferente de void
+
+
+
+Exemplo de Estrutura / Ordem de criação dos elementos de uma Classe Java
+
+public class Exemplo {
+
+    // 1. Atributos
+    private static final int LIMITE = 100;
+    private String nome;
+
+    // 2. Construtores
+    public Exemplo() {}
+    public Exemplo(String nome) { this.nome = nome; }
+
+    // 3. Métodos de Lógica
+    public void processarDados() {
+        validarNome(); // Chama o método de apoio logo abaixo
+        System.out.println("Processando...");
+    }
+
+    private void validarNome() { /* lógica */ }
+
+    // 4. Getters e Setters
+    public String getNome() { return nome; }
+
+    // 5. Métodos Object
+    @Override
+    public String toString() { return "Exemplo [nome=" + nome + "]"; }
+}

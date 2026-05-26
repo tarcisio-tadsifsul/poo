@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercício 012 - Herança</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        1. Crie uma classe chamada Funcionario, que será a superclasse do sistema.
+           
+        Essa classe deve possuir os seguintes atributos:
+            - string nome
+            - double salarioBase
+
+        Implemente:
+            - um construtor
+            - um método calcularSalario()
+            - um método exibirDados()
+
+        2. Crie uma subclasse:
+
+        Gerente:
+            - Possui um setor (string)
+            - Possui um bônus de R$ 1000,00 (double)
+            - Deve sobrescrever o método calcularSalario()
+            - Deve sobrescrever o método exibirDados()
+
+        Regras:
+            - O método calcularSalario() da superclasse retorna apenas o salário base
+            - A subclasse deve somar o bônus ao salário base
+            - Utilize herança para evitar repetição de código
+            - Os atributos e métodos (quando necessário) devem respeitar
+              o conceito de encapsulamento
+
+        Classe Principal:
+            - Crie um objeto do tipo Gerente
+            - Exiba os dados de gerente
+            - Mostre o salário calculado.
+            - Inclua comentários explicando o comportamento do programa.
+    </body>
+</html>
