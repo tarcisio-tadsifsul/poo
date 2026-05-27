@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        Criar uma classe ArCondicionado que gerencie o estado de funcionamento, a temperatura e o modo de operação do aparelho.
+
+        Alguns atributos do aparelho: 
+        - voltagem (127 ou 220v)
+        - potenciaEletrica (whatts)
+        - potenciaRefrigeracao (BTUs);
+        - ligado
+        - temperaturaAtual
+        - modo [resfriar, aquecer, ventilar] //vetor string
+
+        O estado inicial do aparelho é desligado. 
+
+        A temperatura padrão de inicialização é 22º em modo resfriar.
+
+        Alguns métodos:
+        - ligar()
+        - desligar()
+        - aumentarTemperatura() em 1º
+        - diminuirTemperatura() em 1º
+        - trocarModo(String novoModo)
+        - imprimirEstado() que mostre na tela o estado do aparelho (ligado/desligado), a temperatura atual e o modo de operação. 
+        - imprimirEspecificacoesTecnicas() que mostre na tela as características do equipamento (voltagem, potenciaEletrica, potenciaRefrigeração, modos de operação).
+
+        Regras de negócio: 
+        - temperatura só pode ser ajustada de 16º C a 30°C
+        - A temperatura só pode ser modificada se o aparelho estiver ligado;
+        - a troca de modo de operação só deve aceitar aquilo que o aparelho dispõe;
+        - Aplique encapsulamento para todos atributos da classe, disponibilizando acessos de leitura e escrita conforme necessário.
+    </body>
+</html>

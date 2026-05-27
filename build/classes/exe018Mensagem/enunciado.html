@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        Exercício 8: Crie uma Classe Base Mensagem:
+        - destinatario: string
+        - conteudo: string
+
+        Métodos:
+        + enviar() que imprime: "Enviando mensagem genérica para [destinatario]".
+
+        ------------------------------
+        Subclasse Email que herda Mensagem:
+        - assunto: string
+
+        Métodos:
+        - Sobrescrever enviar(): imprime "Enviando E-mail para [destinatario] com o assunto [assunto]".
+
+        ------------------------------
+        Subclasse SMS que estende Mensagem:
+        sobrescreve enviar() que verifica se o conteúdo tem mais de 160 caracteres.
+        Se tiver, imprime: “Erro: SMS muito longo”.
+        Se não, imprime “Enviando SMS para [destinatário]”.
+
+    </body>
+</html>

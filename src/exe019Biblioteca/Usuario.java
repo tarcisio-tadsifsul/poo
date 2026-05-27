@@ -4,6 +4,7 @@ public class Usuario {
     // Atributos
     private String nome;
     private String cpf;
+    private Endereco endereco;
 
     // Leitura / Escrita
     public String getNome() {
@@ -14,7 +15,7 @@ public class Usuario {
         if (nome == null || nome.equals("")) {
             this.nome = "Sem Nome";
         } else {
-            this.nome = nome;
+            this.nome = nome.trim();
         }
     }
 
@@ -26,7 +27,7 @@ public class Usuario {
         if (cpf == null || cpf.equals("")) {
             this.cpf = "Sem CPF";
         } else {
-            this.cpf = cpf;
+            this.cpf = cpf.trim();
         }
     }
 
@@ -34,17 +35,20 @@ public class Usuario {
     public Usuario() {
         this.nome = "Sem nome";
         this.cpf = "Sem CPF";
+        this.endereco = null;
     }
 
-    public Usuario(String nome, String cpf) {
+    public Usuario(String nome, String cpf, Endereco endereco) {
         setNome(nome);
         setCpf(cpf);
+        this.endereco = endereco;
     }
 
     // Metodos
     public String exibirDados() {
-        return "\nUsuário:"
+        return "\nUsuario:"
                 + "\n| Nome: " + getNome()
-                + "\n| CPF:  " + getCpf();
+                + "\n| CPF:  " + getCpf()
+                + "\n| Endereco: " + this.endereco.retornarEndereco();
     }
 }
