@@ -1,49 +1,40 @@
 package exe021meiosDeTransporte;
 
-public class Carro extends Automovel{
+public class Carro extends Automovel {
 
     // atributos
     private int qtdPortas;
 
     // Construtores
-    public Carro(){
+    public Carro() {
         this.qtdPortas = 0;
     }
 
     public Carro(
-        String marca,
-        String modelo,
-        int qtdRodas,
-        int velocidade,
-        double potencialDoMotor,
-        int qtdPortas
-    ){
-        super(
-            marca, modelo, qtdRodas, velocidade,
-            potencialDoMotor
-        );
+            String marca,
+            String modelo,
+            int qtdRodas,
+            int velocidade,
+            double potenciaDoMotor,
+            int qtdPortas) {
+        super(marca, modelo, qtdRodas, velocidade, potenciaDoMotor);
         this.qtdPortas = qtdPortas;
     }
 
     // Leitura | Escrita
-    public double getqtdPortas() {
+    public int getQtdPortas() {
         return qtdPortas;
+    }
+
+    public void setQtdPortas(int qtdPortas) {
+        this.qtdPortas = qtdPortas;
     }
 
     // Metodos
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() +
-                "\n| QTD Portas:\t" + getqtdPortas();
+                "\n| QTD Portas:\t\t" + getQtdPortas();
     }
 
-    @Override
-    public void imprimirInformacoes(){
-        System.out.println(
-            this.toString()
-        );
-    }
-
-
-// fim classe    
 }

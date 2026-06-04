@@ -9,14 +9,18 @@ public abstract class Veiculo {
     private int velocidade = 0;
 
     // Construtor
-    public Veiculo(){}
+    public Veiculo() {
+        this.marca = "Sem Marca";
+        this.modelo = "Sem Modelo";
+        this.qtdRodas = 0;
+        this.velocidade = 0;
+    }
 
     public Veiculo(
             String marca,
             String modelo,
             int qtdRodas,
-            int velocidade
-        ){
+            int velocidade) {
         this.marca = marca;
         this.modelo = modelo;
         this.qtdRodas = qtdRodas;
@@ -57,10 +61,12 @@ public abstract class Veiculo {
     }
 
     // Metodos
+
     @Override
     // toString base com dados gerais
-    public String toString(){
-        return "\nTipo " + this.getClass().getSimpleName() +
+    public String toString() {
+        return "\n-------------------------" +
+                "\nVeiculo: " + this.getClass().getSimpleName() +
                 "\n| Marca:\t\t" + getMarca() +
                 "\n| Modelo:\t\t" + getModelo() +
                 "\n| QTD Rodas:\t\t" + getQtdRodas() +
@@ -68,16 +74,30 @@ public abstract class Veiculo {
     }
 
     // Método void herdado por todas as subclasses
-    public void imprimirInformacoes(){
+    public void imprimirInformacoes() {
         System.out.println(
-            this.toString() // O "this" chamará o toString da classe real do objeto (polimorfismo)
+                this.toString() // O "this" chamará o toString da classe real do objeto (polimorfismo)
         );
     }
 
-    public void acelerar(int valor){
-        
+    // Método para acelerar o veículo
+    public void acelerar(int valor) {
+        this.velocidade += valor;
+        imprimirVelocidade("[>] Acelerou!", getVelocidade());
     }
 
+    // Método para reduzir a velocidade do veículo
+    public void frear(int valor) {
+        if (valor > this.velocidade) {
+            this.velocidade = 0;
+        } else {
+            this.velocidade -= valor;
+        }
+        imprimirVelocidade("[#] Freou!", getVelocidade());
+    }
 
-//fim classe    
+    private void imprimirVelocidade(String acao, int velocidadeAtual) {
+        System.out.println(acao + " Velocidade atual = " + velocidadeAtual + " km/h");
+    }
+
 }

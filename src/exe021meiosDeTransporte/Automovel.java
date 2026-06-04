@@ -3,42 +3,33 @@ package exe021meiosDeTransporte;
 public class Automovel extends Veiculo {
 
     // Atributos
-    private double potencialDoMotor;
+    private double potenciaDoMotor;
 
     // Construtores
     public Automovel() {
-        this.potencialDoMotor = 0.0;
+        this.potenciaDoMotor = 0.0;
     }
 
     public Automovel(
-        String marca,
-        String modelo,
-        int qtdRodas,
-        int velocidade,
-        double potencialDoMotor
-    ) {
+            String marca,
+            String modelo,
+            int qtdRodas,
+            int velocidade,
+            double potenciaDoMotor) {
         super(marca, modelo, qtdRodas, velocidade);
-        this.potencialDoMotor = potencialDoMotor;
+        this.potenciaDoMotor = potenciaDoMotor;
     }
 
     // Leitura | Escrita
-    public double getPotencialDoMotor() {
-        return potencialDoMotor;
+    public double getPotenciaDoMotor() {
+        return potenciaDoMotor;
     }
 
     // Metodos
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() +
-                "\n| Potencial Motor:\t" + getPotencialDoMotor();
+                "\n| Potencial Motor:\t" + getPotenciaDoMotor();
     }
 
-    @Override
-    public void imprimirInformacoes(){
-        System.out.println(
-            this.toString()
-        );
-    }
-
-//fim classe    
 }
