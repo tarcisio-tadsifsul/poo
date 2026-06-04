@@ -14,7 +14,7 @@ ou
 ou
 `git add -A` (para adicionar todas as alterações, incluindo arquivos deletados)
 
----
+## `git commit -am "Mensagem do commit"` (para adicionar e commitar em um único comando, apenas para arquivos já rastreados)
 
 ## **Para commitar as alterações:**
 
