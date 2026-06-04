@@ -3,69 +3,68 @@ package exe22FaturaLoja;
 public class Fatura {
 
     // Atributos
-    private String numero; // numero/id do item
-    private String descricao;
-    private int qtdComprada; // quantidade comprada de um item
-    private double preco; // preço por item
-    // private int[] totalItems;
+    private String numeroFatura;
+    private ItemFatura[] itens; // O vetor de objetos!
+    private int contadorItens; // Controla quantos itens já foram adicionados
 
     // Construtores
     public Fatura() {
-        this.numero = "0000";
-        this.descricao = "Sem descricao";
-        this.qtdComprada = 0;
-        this.preco = 0.0;
+        this.numeroFatura = "0000";
+        this.contadorItens = 0;
+        this.itens = new ItemFatura[10];
     }
 
-    public Fatura(String numero, String descricao, int qtdComprada, double preco) {
-        this.numero = numero;
-        this.descricao = descricao;
-        this.qtdComprada = qtdComprada;
-        this.preco = preco;
+    public Fatura(String numeroFatura, int maxItens) {
+        this.numeroFatura = numeroFatura;
+        this.itens = new ItemFatura[maxItens]; // Inicializa o vetor com o tamanho máximo
+        this.contadorItens = 0;
     }
 
     // Leitura | Escrita
-    public String getNumero() {
-        return numero;
+    public String getNumeroFatura() {
+        return numeroFatura;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getQtdComprada() {
-        return qtdComprada;
-    }
-
-    public void setQtdComprada(int qtdComprada) {
-        this.qtdComprada = qtdComprada;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setNumeroFatura(String numeroFatura) {
+        this.numeroFatura = numeroFatura;
     }
 
     // Metodos
-    /**
-     * getTotalFatura que calcula o valor da fatura e retorna o valor como um
-     * double.
-     * Se o valor não for positivo, ele deve ser configurado como 0.
-     * Se o preço por item não for positivo, ele deve ser configurado como 0.0.
-     */
-    public double getTotalFatura() {
+    public void adicionarItem(ItemFatura item) {
+        if (contadorItens < itens.length) {
+            this.itens[contadorItens] = item;
+            contadorItens++;
+        } else {
+            System.out.println("[ERRO] Atingido numero máximo de itens para essa fatura!");
+        }
+    }
 
+    public double calculaTotalFatura() {
+        double totalFatura = 0.0;
+        for (int i = 0; i < contadorItens; i++) {
+            totalFatura += itens[i].calcularTotalItem();
+        }
+        return totalFatura;
+    }
+
+    public String agruparItens() {
+        String itensDaFatura = "";
+        for (int i = 0; i < contadorItens; i++) {
+            itensDaFatura += itens[i].mostrarItem();
+        }
+        return itensDaFatura;
+    }
+
+    public String gerarFatura() {
+        return "\n-------------------------------"
+                + "\n| FATURA LOJA XYZ"
+                + "\n| Numero: " + getNumeroFatura()
+                + "\n|------------------------------"
+                + "\n| ITENS DA FATURA"
+                + this.agruparItens()
+                + "\n| -----------------------------"
+                + "\n| TOTAL FATURA:\tR$ " + calculaTotalFatura()
+                + "\n-------------------------------";
     }
 
 }
