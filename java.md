@@ -2,6 +2,14 @@
 
 O básico da linguagem Java inclui regras de nomenclatura, modificadores de acesso, tipos de retorno, estrutura de classes e objetos, herança e implementação de interfaces. A seguir estão algumas das principais regras e convenções para escrever código Java.
 
+    // Atributos
+
+    // Leitura | Escrita
+
+    // Construtores
+
+    // Metodos
+
 ## Regra para nome de pacotes, classes, métodos e variáveis:
 
 - **Pacotes**: devem ser escritos em letras minúsculas e usar pontos para separar os níveis (ex: `com.exemplo.pacote`);
