@@ -20,7 +20,7 @@ public class Quadrado implements AreaCalculavel {
 
     // Construtores
     public Quadrado(double lado) {
-        this.lado = lado;
+        setLado(lado);
     }
 
     // Metodos
@@ -28,7 +28,7 @@ public class Quadrado implements AreaCalculavel {
     public double calculaArea() {
         // A = (lado)² quando tiver valor de lado do quadrado
         // A = (diagonal)² / 2 quando tiver valor diagonal do quadrado
-        return Math.pow(lado, 2);
+        return Math.pow(this.lado, 2);
     }
 
 }

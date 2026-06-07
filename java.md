@@ -113,6 +113,15 @@ O básico da linguagem Java inclui regras de nomenclatura, modificadores de aces
     }
     ```
 
+## Para criar interfaces em Java, você pode usar a seguinte sintaxe:
+
+    ```java
+    public interface NomeDaInterface {
+        // Métodos da interface (sem corpo)
+        TipoDeRetorno nomeDoMetodo();
+    }
+    ```
+
 ## Para implementar uma interface, você pode usar a palavra-chave `implements`:
 
     ```java
