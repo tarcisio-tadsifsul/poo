@@ -8,7 +8,7 @@ public class Retangulo implements AreaCalculavel {
 
     // Leitura | Escrita
     public double getBase() {
-        return base;
+        return this.base;
     }
 
     public void setBase(double base) {
@@ -20,7 +20,7 @@ public class Retangulo implements AreaCalculavel {
     }
 
     public double getAltura() {
-        return altura;
+        return this.altura;
     }
 
     public void setAltura(double altura) {

@@ -3,6 +3,7 @@ package exe25AreaCalculavel;
 public class Circulo implements AreaCalculavel {
     // Atributos
     private double raio;
+    static final double CONST_PI = 3.14;
 
     // Leitura | Escrita
     public double getRaio() {
@@ -25,7 +26,10 @@ public class Circulo implements AreaCalculavel {
     // Metodos
     @Override
     public double calculaArea() {
-        return Math.PI * Math.pow(raio, 2);
+        // A = pi * r²
+        // Math.PI * Math.pow(this.raio, 2);
+        // CONST_PI * (this.raio * this.raio);
+        return CONST_PI * Math.pow(this.raio, 2);
     }
 
 }

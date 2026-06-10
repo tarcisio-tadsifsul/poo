@@ -28,6 +28,7 @@ public class Quadrado implements AreaCalculavel {
     public double calculaArea() {
         // A = (lado)² quando tiver valor de lado do quadrado
         // A = (diagonal)² / 2 quando tiver valor diagonal do quadrado
+        // return this.lado * this.lado;
         return Math.pow(this.lado, 2);
     }
 

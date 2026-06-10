@@ -3,8 +3,8 @@ package exe28Matematica;
 public class Matematica {
 
     // Atributos
-    private double valor1;
-    private double valor2;
+    private static double valor1;
+    private static double valor2;
 
     // Construtor
     public Matematica(){
@@ -13,8 +13,8 @@ public class Matematica {
     }
 
     public Matematica(double valor1, double valor2){
-        this.valor1 = valor1;
-        this.valor2 = valor2;
+        setValor1(valor1);
+        setValor2(valor2);
     }
 
     // leitura | Escrita
@@ -39,8 +39,16 @@ public class Matematica {
         return v1 + v2;
     }
 
+    public double subtrair(double v1, double v2){
+        return v1 - v2;
+    }
+
+    public double multiplicar(double v1, double v2){
+        return v1 * v2;
+    }
+
     public double dividir(double v1, double v2){
-        if (v1 != 0){
+        if (v2 != 0){
             return v1 / v2;
         }
         return 0.0;

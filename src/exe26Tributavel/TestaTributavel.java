@@ -14,19 +14,19 @@ public class TestaTributavel {
         poupanca.obterSaldo();
 
         // Conta Corrente
-        ContaCorrente cc = new ContaCorrente(0);
+        ContaCorrente cc = new ContaCorrente(624.87);
 
         System.out.println("\nConta Corrente");
         cc.obterSaldo();
         cc.depositar(500);
-        System.out.println("Tributavel:\tR$ " + cc.calculaTributos());
+        System.out.println("Tributavel:\t" + cc.calculaTributos());
         cc.sacar(230.80);
         cc.obterSaldo();
-        System.out.println("Tributavel:\tR$ " + cc.calculaTributos());
+        System.out.println("Tributavel:\t" + cc.calculaTributos());
 
         SeguroDeVida seguro = new SeguroDeVida();
         System.out.println(
-                "\nTaxa do Seguro: R$ " +
+                "\nTaxa do Seguro: " +
                         seguro.calculaTributos());
     }
 }
