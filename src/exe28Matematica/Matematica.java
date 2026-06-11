@@ -53,5 +53,9 @@ public class Matematica {
         }
         return 0.0;
     }
+
+    public String erroDivisaoZero(){
+        return "[Erro Divisão por Zero]";
+    }
     
 }

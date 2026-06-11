@@ -12,10 +12,10 @@ public class Main {
         String[] textos = new String[5];
 
         textos[0] = "\nCALCULADORA SIMPLES";
-        textos[1] = "\nOperações:\n [1] Somar\t[2] Subtrair\n [3] Dividir\t[4] Multiplicar\n [0] Sair";
+        textos[1] = "\nOperações:\n [1] Somar\t[3] Dividir\n [2] Subtrair\t[4] Multiplicar\n\n [0] Sair";
         textos[2] = "\nOperacao: ";
-        textos[3] = "Informe valor 1: ";
-        textos[4] = "Informe valor 2: ";
+        textos[3] = "Primeiro Elemento: ";
+        textos[4] = "Segundo Elemento: ";
 
         while (true) { 
             System.out.printf("%s \n %s \n %s", textos[0], textos[1], textos[2]);
@@ -32,7 +32,7 @@ public class Main {
             v2 = sc.nextDouble();
 
             switch (op) {
-                case 1 -> System.out.println("\nResultado: " + mat.subtrair(v1, v2));
+                case 1 -> System.out.println("\nResultado: " + mat.somar(v1, v2));
                 case 2 -> System.out.println("\nResultado: " + mat.subtrair(v1, v2));
                 case 3 -> System.out.println("\nResultado: " + mat.dividir(v1, v2));
                 case 4 -> System.out.println("\nResultado: " + mat.multiplicar(v1, v2));
