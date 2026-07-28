@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public class Aluno extends Pessoa {
 
     // Atributos
-    private static int auxId = 0;
+    private static int auxId;
     private int id;
     private String curso;
     private String numeroMatricula;
@@ -14,10 +14,10 @@ public class Aluno extends Pessoa {
 
     // Construtores
     public Aluno() {
-        super("Sem Nome", "Sem CPF", "Sem Email");
+        super();  // super() sem parametros vai usar o construtor padrão criado na classe pessoa, no qual já recebe valores N/D
         this.id = 0;
-        this.curso = "Curso S/N";
-        this.numeroMatricula = "Matricula S/N";
+        this.curso = "N/D";
+        this.numeroMatricula = "N/D";
         this.disciplinas = new Disciplina[5];
     }
 
@@ -25,7 +25,7 @@ public class Aluno extends Pessoa {
         super(nome, cpf, email);
         this.id = autoIncrementarId();
         this.curso = curso;
-        this.numeroMatricula = curso.toUpperCase() + "2026" + this.id;
+        this.numeroMatricula = curso.toUpperCase() + "202600" + this.id;
         this.disciplinas = new Disciplina[5];
     }
 
@@ -66,11 +66,16 @@ public class Aluno extends Pessoa {
      * @param disciplina
      * @return boolean
      */
-    public boolean matricular(Disciplina objDisciplina) {
+    public boolean matricular(Disciplina paramDisciplina) {
+        if (paramDisciplina == null){
+            System.out.println("\n[ERRO] Disciplina nula!");
+            return false;
+        }
+
         for (int i = 0; i < this.disciplinas.length; i++) {
             if (this.disciplinas[i] == null) {
-                this.disciplinas[i] = objDisciplina;
-                System.out.printf("\n\n[OK] Matricula realizada na disciplina de %s", objDisciplina.getNome());
+                this.disciplinas[i] = paramDisciplina;
+                System.out.printf("\n\n[OK] Matricula realizada na disciplina de %s", paramDisciplina.getNome());
                 return true;
             }
         }
@@ -85,6 +90,11 @@ public class Aluno extends Pessoa {
      * @return boolean
      */
     public boolean desmatricular(String nomeDisciplina) {
+
+        if (nomeDisciplina == null || nomeDisciplina == ""){
+            System.out.print("\n\n[ERRO] Nome da disciplina inválido!");
+            return false;
+        }
 
         // validar se a disciplina a ser desmatriculada existe no vetor disciplinas do
 
@@ -120,13 +130,13 @@ public class Aluno extends Pessoa {
      * @return double
      */
     public double calcularCargaHoraria() {
-        double cargaHorariaTotal = 0.0;
+        double auxCargaHoraria = 0.0;
         for (Disciplina disciplina : disciplinas) {
             if (disciplina != null) {
-                cargaHorariaTotal += disciplina.getCargaHoraria();
+                auxCargaHoraria += disciplina.getCargaHoraria();
             }
         }
-        return cargaHorariaTotal;
+        return auxCargaHoraria;
     }
 
     public String retornaCargaHorariaTotal() {
@@ -157,8 +167,7 @@ public class Aluno extends Pessoa {
         String listaDisciplinas = "";
         for (int i = 0; i < this.disciplinas.length; i++) {
             if (this.disciplinas[i] != null) {
-                nomeECarga = this.disciplinas[i].getNome() + " / " + df.format(this.disciplinas[i].getCargaHoraria())
-                        + "h";
+                nomeECarga = this.disciplinas[i].getNome() + " - " + df.format(this.disciplinas[i].getCargaHoraria()) + "h";
             } else {
                 nomeECarga = "(disponivel para matricula)";
             }
@@ -177,10 +186,10 @@ public class Aluno extends Pessoa {
         return "\n\n| RELATORIO DE MATRICULA" +
                 "\n| --------------------" +
                 this.exibirDados() +
-                "\n|--------------------" +
+                "\n| --------------------" +
                 "\n| DISCIPLINAS MATRICULADAS" +
                 this.listarDisciplinas() +
-                "\n|--------------------" +
+                "\n| --------------------" +
                 "\n| Carga Horária Total: " + df.format(this.calcularCargaHoraria()) + 'h';
     }
 

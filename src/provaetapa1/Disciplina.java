@@ -9,9 +9,9 @@ public class Disciplina {
 
     // Construtores
     public Disciplina() {
-        this.nome = "S/N";
+        this.nome = "N/D";
         this.cargaHoraria = 0.0;
-        this.professor = "Sem professor definido";
+        this.professor = "N/D";
     }
 
     public Disciplina(String nome, double cargaHoraria, String professor) {
@@ -45,6 +45,6 @@ public class Disciplina {
     // Metodos
     @Override
     public String toString() {
-        return "Disciplina: " + this.nome + "\nCarga Horaria: " + this.cargaHoraria + "\nProfessor: " + this.professor;
+        return "\n\n| Disciplina: " + this.nome + "\n| Carga Horaria: " + this.cargaHoraria + "h \n| Professor: " + this.professor;
     }
 }
