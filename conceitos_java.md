@@ -130,3 +130,42 @@ O básico da linguagem Java inclui regras de nomenclatura, modificadores de aces
         // Código da classe
     }
     ```
+
+## Tipos de Relacionamentos em Java
+
+A estrutura dos relacionamentos funciona como uma árvore hierárquica na UML (Linguagem de Modelagem Unificada).
+
+### 1. Os Tipos de Associação
+
+A Associação é o relacionamento genérico "um objeto usa/conhece outro". Ela se divide em dois tipos específicos com base no nível de acoplamento (dependência de vida) entre os objetos:
+
+- `Agregação` ("Tem um"): É uma associação fraca. Os objetos existem de forma independente. Se a classe "pai" for destruída, o objeto "filho" continua existindo.
+
+Exemplo: Departamento e Funcionario. Se o departamento de TI fechar, os funcionários continuam existindo no sistema.
+
+- `Composição` ("É composto por"): É uma associação forte. Existe uma relação de dependência existencial. Se o objeto "pai" for destruído, o objeto "filho" é destruído junto.
+
+Exemplo: Pedido e ItemPedido. Se você deletar o pedido, os itens dentro dele deixam de fazer sentido e são deletados junto.
+
+### 2. Generalização (Herança)
+
+É o famoso relacionamento de "É um". É usado quando uma classe filha herda atributos e métodos de uma superclasse (mãe/pai).
+
+Exemplo: Gerente é um Funcionario. Cachorro é um Animal.Em Java, implementamos isso usando a palavra-chave extends.
+
+### 3. Dependência
+
+É o relacionamento mais fraco de todos. Acontece quando uma classe usa temporariamente outra classe, mas não a guarda como um atributo fixo.
+
+Exemplo: Um método de relatório que recebe um Scanner ou uma Data como parâmetro para fazer um cálculo rápido dentro do método e depois "descarta".
+
+Em Java: A classe B é usada apenas como parâmetro de método ou variável local dentro da classe A.
+
+### Resumo dos Relacionamentos em POO
+
+| Relacionamento      | Conceito                               | Nível de Ligação          | Como identificar em Java            |
+| :------------------ | :------------------------------------- | :------------------------ | :---------------------------------- |
+| **Generalização**   | `"É um"`                               | `Muito Forte (Estrutural)`| `class Gerente extends Funcionario` |
+| **Composição**      | `"É parte de" (dono do ciclo de vida)` | `forte`                   | `Atributo instanciado dentro da própria classe`|
+| **Agregação**       | `"Tem um" (vida independente)`         | `média`                   | `Atributo recebido via parâmetro/setter`|
+| **Dependência**     | `"Usa um" (temporário)`                | `fraca`                   | `Parâmetro de método ou variável local`|
