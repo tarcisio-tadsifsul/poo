@@ -34,6 +34,7 @@ O básico da linguagem Java inclui regras de nomenclatura, modificadores de aces
 
 - `public`: método ou atributo pode ser acessado de qualquer lugar.
 - `private`: método ou atributo só pode ser acessado dentro da própria classe.
+- `abstract`: usado para indicar que uma classe ou um método está incompleto por definição, servindo como um "molde" ou "modelo" para outras classes herdarem.
 - `protected`: método ou atributo pode ser acessado dentro do mesmo pacote e por subclasses.
 
 ## Tipo de Retorno:

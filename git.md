@@ -1,12 +1,12 @@
 # Comandos git via CMD
 
-## **Para clonar repositorio do github:**
+### **Para clonar repositorio do github:**
 
 `git clone https://github.com/tarcisio-tadsifsul/poo.git`
 
 ---
 
-## **Para adicionar arquivos para o stage:**
+### **Para adicionar arquivos para o stage:**
 
 `git add .`
 ou
@@ -16,7 +16,7 @@ ou
 
 ## `git commit -am "Mensagem do commit"` (para adicionar e commitar em um único comando, apenas para arquivos já rastreados)
 
-## **Para commitar as alterações:**
+### **Para commitar as alterações:**
 
 `git commit -m "Mensagem do commit"`
 
@@ -24,7 +24,7 @@ OBSERVAÇÃO: A mensagem do commit no CMD deve ser escrita entre aspas duplas!
 
 ---
 
-## **Para enviar as alterações para o repositório remoto:**
+### **Para enviar as alterações para o repositório remoto:**
 
 `git push`
 ou
@@ -32,65 +32,61 @@ ou
 
 ---
 
-## **Para verificar o status do repositório:**
+### **Para verificar o status do repositório:**
 
 `git status`
 
 ---
 
----
-
----
-
-Para verificar o histórico de commits:
+### **Para verificar o histórico de commits**
 
 `git log`
 
 ---
 
-Para criar uma nova branch:
+### **Para criar uma nova branch**
 
 `git checkout -b nome-da-branch`
 
 ---
 
-Para mudar para uma branch existente:
+### **Para mudar para uma branch existente**
 
 `git checkout nome-da-branch`
 
 ---
 
-Para mesclar uma branch com a branch principal:
+### **Para mesclar uma branch com a branch principal**
 
 `git merge nome-da-branch`
 
 ---
 
-Para excluir uma branch:
+### **Para excluir uma branch**
 
 `git branch -d nome-da-branch`
 
 ---
 
-Para listar as branches existentes:
+### **Para listar as branches existentes**
 
 `git branch`
 
 ---
 
-Para verificar as alterações feitas em um arquivo:
+### **Para verificar as alterações feitas em um arquivo**
 
 `git diff nome-do-arquivo`
 
 ---
 
-Para desfazer as alterações em um arquivo:
+### **Para desfazer as alterações em um arquivo**
 
 `git checkout -- nome-do-arquivo`
 
 ---
 
-Para desfazer um commit:
+### **Para desfazer um commit**
 
 `git reset --soft HEAD~1` (mantém as alterações no stage)
 
@@ -98,17 +94,33 @@ Para desfazer um commit:
 
 ---
 
-Para criar um repositório local:
+### **Para criar um repositório local**
 
 `git init`
 
 ---
 
-Para configurar o nome de usuário e email:
+### **Para configurar o nome de usuário e email**
 
 `git config --global user.name "Seu Nome"`
 
 `git config --global user.email "email@email.com"`
+
+---
+
+### **Para abrir o arquivo de configuração global do Git no editor de texto padrão do seu terminal**
+
+`git config --global --edit`
+
+---
+
+### **Para alterar o último Commit**
+
+`git commit --amend`
+
+OBS.: reescreve/altera o último commit da ramificação atual.
+Permite adicionar arquivos esquecidos ou alterar a mensagem do commit sem criar um novo histórico.
+CUIDADO: push não deve ter sido usado ainda.
 
 ---
 
