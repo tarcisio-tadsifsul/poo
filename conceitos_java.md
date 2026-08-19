@@ -184,6 +184,28 @@ Em Java: A classe B é usada apenas como parâmetro de método ou variável loca
 
 ## Data Strutures (Estrutura de Dados)
 
+### Tipos primitivos de estrutura de dados
+
+- **Vetor|Array (Unidimensional - 1D)**
+    - _Conceito_: vetor (ou array unidimensional) organiza os dados em uma única linha contínua na memória.
+    - _Acesso_: Feito por meio de um único índice numérico.
+    - _Analogia_: Uma fileira de armários numerados de 0 a \(N\).
+    - Exemplo em (C/C++): int vetor[5]; (Guarda 5 números inteiros).
+
+- **Matriz (Bidimensional - 2D)**
+    - Conceito: matriz organiza os dados em uma estrutura de linhas e colunas, formando uma tabela.
+    - Acesso: Feito por meio de dois índices: (linha, coluna).
+    - Analogia: Uma planilha de Excel ou um tabuleiro de xadrez.
+    - Exemplo de declaração (C/C++): int matriz[3][3]; (Uma tabela de 3 linhas e 3 colunas).
+
+- **Cubo (Tridimensional - 3D)**
+    - Conceito: cubo de dados (ou matriz tridimensional) adiciona a propriedade de profundidade às linhas e colunas.
+    - Acesso: Feito por meio de três índices: (página/profundidade, linha, coluna)
+    - Analogia: Um bloco de notas físico (onde cada página é uma matriz 2D) ou um Cubo Mágico.
+    - Exemplo de declaração (C/C++): int cubo[2][3][3]; (2 matrizes de 3x3 sobrepostas)
+
+
+
 ### Java Collections Framework
 
 O Java Collections Framework (JCF) fornece um conjunto de **interfaces** (como `List`, `Set`e `Map`) e um conjunto de **classes** ( `ArrayList`, `HashSet`, `HashMap`, etc.) que implementam essas interfaces.
