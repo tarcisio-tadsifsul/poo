@@ -7,7 +7,6 @@
 
 - A classe deve ter um `construtor`, métodos `get` e `set` para cada variável de instância;
 
-- Escreva um aplicativo de teste chamado `EmpregadoTeste` que cria dois objetos `Empregado`
-  e exibe o salário anual de cada objeto;
+- Escreva um aplicativo de teste chamado `EmpregadoTeste` que cria dois objetos `Empregado` e exibe o salário anual de cada objeto;
 
 - Dê a cada `Empregado` um aumento de 10% e exiba novamente o salário anual de cada `Empregado`.
