@@ -1,32 +1,5 @@
 package dadosEstruturados;
 
-/**
- * REQUISITOS - PARTE 1 [✓] Implemente uma estrutura de dados do tipo Fila
- * (política FIFO) em Java.
- *
- * [✓] Utilize como dado um objeto que você deve criar, contendo alguns
- * atributos devidamente encapsulados.
- *
- * [✓] A estrutura deve conter obrigatoriamente os métodos: - enqueue para
- * inserção no fim da fila - dequeue para remoção do início da fila - printQueue
- * para exibição linear dos dados armazenados.
- *
- * REQUISITOS - PARTE 2 [?] Implemente uma funcionalidade que torne a estrutura
- * de dados dinâmica. Ou seja, se o usuário tentar incluir um dado com o vetor
- * em sua capacidade máxima, o sistema deve comportar essa necessidade,
- * aumentando automaticamente a capacidade de armazenamento do array em 50% do
- * tamanho anterior.
- *
- * [?] No método principal, crie um menu para testar a implementação.
- *
- * TESTES: [✓] Teste a implementação dentro do método main da classe principal,
- * realizando todas as operações disponibilizadas.
- *
- * DICA: # Utilize o método de impressão a cada operação para analisar o
- * resultado. # Siga as convenções de código, nomenclatura e sintaxe padrão da
- * linguagem Java.
- *
- */
 public class Pedido {
 
     // Atributos
@@ -38,21 +11,20 @@ public class Pedido {
     private int totalItens;
     private ItemPedido itens[];
     private ItemPedido auxItens[];
+    static String nomeObj;
 
     // Construtores
     public Pedido() {
         this.idPedido = idAux++;
         this.cliente = "N/A";
         this.valorTotal = 0.0;
-        this.maxItens = 10;
+        this.maxItens = 3;
         this.totalItens = 0;
         this.itens = new ItemPedido[maxItens];
     }
 
-    ;
-
-    public Pedido(String nomeCliente) {
-        this.idPedido = ++idAux;
+    public Pedido(String nomeCliente, int id) {
+        this.idPedido = id;
         this.cliente = nomeCliente;
         this.valorTotal = 0.0;
         this.maxItens = 2;
@@ -70,6 +42,21 @@ public class Pedido {
     }
 
     // Metodos
+    
+    /**
+     * Metodo para criar o pedido
+     * 
+     */
+    public void criarPedido(String nomeCliente){
+        if (!nomeCliente.equalsIgnoreCase("")){
+            ++idAux;
+            nomeObj = "PED00" + idAux;
+            Pedido nomeObj = new Pedido(nomeCliente, idAux);            
+        } else {
+            System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
+        }
+    }
+    
     /**
      * Adiciona um item no final do vetor itens e retorna uma uma String
      * (mensagem sucesso/erro)
@@ -77,7 +64,7 @@ public class Pedido {
      * @param item
      * @return String com mensagem de sucesso/erro
      */
-    public String adicinarItemPedido(ItemPedido item) {
+    public void adicinarItemPedido(ItemPedido item) {
         boolean itemAdicionado = false;
 
         if (totalItens == maxItens) {
@@ -95,19 +82,20 @@ public class Pedido {
 
         // Mensagem Sucesso|Erro
         if (itemAdicionado) {
-            return "Item adicionado no Pedido " + idPedido;
+            System.out.println("Item adicionado no Pedido #" + idPedido);
         } else {
-            return "Item " + item.getNome() + " não adicionado no Pedido " + idPedido;
+            System.out.println("Item " + item.getNome() + " não adicionado no Pedido #" + idPedido);
         }
 
     }
 
     /**
      * Aumenta a dimensão do vetor de itens
-     *
+     * 
      */
     private void aumentaVetorItens() {
-        int aumentaMaxItens = maxItens * 2;
+        //int aumentaMaxItens = maxItens * 2;
+        int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
         auxItens = new ItemPedido[aumentaMaxItens];
         
         for (int i = 0; i < maxItens; i++) {

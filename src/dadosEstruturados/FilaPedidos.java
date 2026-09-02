@@ -1,56 +1,41 @@
-/**
- * REQUISITOS - PARTE 1
- *  [✓] Implemente uma estrutura de dados do tipo Fila (política FIFO) em Java.
- * 
- *  [✓] Utilize como dado um objeto que você deve criar, contendo alguns atributos
- *      devidamente encapsulados.
- * 
- *  [✓] A estrutura deve conter obrigatoriamente os métodos:
- *      - enqueue para inserção no fim da fila
- *      - dequeue para remoção do início da fila
- *      - printQueue para exibição linear dos dados armazenados.
- * 
- * REQUISITOS - PARTE 2
- *  [?] Implemente uma funcionalidade que torne a estrutura de dados dinâmica. Ou seja, se o usuário tentar incluir um dado com o vetor em sua capacidade máxima,
- *      o sistema deve comportar essa necessidade, aumentando automaticamente a capacidade de armazenamento do array em 50% do tamanho anterior.
- * 
- *  [?] No método principal, crie um menu para testar a implementação.
- * 
- * TESTES:
- *  [✓] Teste a implementação dentro do método main da classe principal,
- *      realizando todas as operações disponibilizadas.
- * 
- * DICA:
- *  # Utilize o método de impressão a cada operação para analisar o resultado.
- *  # Siga as convenções de código, nomenclatura e sintaxe padrão da linguagem Java.
- * 
- */
-
-
 package dadosEstruturados;
 
 public class FilaPedidos {
 
     // Atributos
     private Pedido fila[];
+    private Pedido auxFila[];
     private int capacidade;
     private int totalPedidos;
 
     // Construtor
-    public FilaPedidos(int capacidade) {
-        this.capacidade = capacidade;
+    public FilaPedidos() {
+        this.capacidade = 2;
         this.totalPedidos = 0;
         this.fila = new Pedido[capacidade];
     }
 
     // Metodos
+    public boolean verificarPedidoJaExiste(String nome){
+        if (!nome.equalsIgnoreCase("") && fila.length > 0){
+            for (int i = 0; i < totalPedidos; i++) {                
+                if (fila[i] != null){
+                    return fila[i].getCliente().equalsIgnoreCase(nome); // retorna true ou false
+                }                
+            }
+        }
+        return false;
+    }
 
     /**
      * Metodo enqueue para inserção no fim da fila
      * @param pedido
      * @return
      */
-    public boolean receberPedido(Pedido pedido) {
+    public boolean adicionarPedidoNaFila(Pedido pedido) {
+        if (totalPedidos == capacidade){
+            this.aumentaVetorPedidos();
+        }
 
         if (totalPedidos < capacidade) {
             fila[totalPedidos] = pedido;
@@ -60,18 +45,34 @@ public class FilaPedidos {
             System.out.println("[OK] Pedido #" + idPedidoRecebido + " Recebido com Sucesso!");
             return true;
         } else {
-            System.out.println(
-                    "\n[ATENCAO] Pedido #" + pedido.getIdPedido() + " Não Recebido!" +
-                            "\n[AVISO] Capacidade Maxima de " + capacidade + " Pedidos Atingida!");
+            System.out.println("\n[ATENCAO] Pedido #" + pedido.getIdPedido() + " Não Recebido!");
             return false;
         }
+    }
+    
+    /**
+     * Aumenta a dimensão do vetor de pedidos
+     *
+     */
+    private void aumentaVetorPedidos(){
+        int aumentaCapacidade = capacidade + Math.round(capacidade * 1.5f);
+        auxFila = new Pedido[aumentaCapacidade];
+        
+        for (int i = 0; i < capacidade; i++) {
+            if (fila[i] != null){
+                auxFila[i] = fila[i];
+            }
+        }
+        
+        capacidade = aumentaCapacidade;
+        fila = auxFila;
     }
 
     /**
      * Metodo dequeue para remoção do início da fila
      * @return boolean
      */
-    public boolean realizarPedido() {
+    public boolean removerPedidoDaFila() {
 
         // Guarda em `idPedidoRealizado` o id do primeiro item da fila antes de remover para usar nas mensagens
         int idPedidoRealizado = fila[0].getIdPedido(); 
@@ -98,6 +99,9 @@ public class FilaPedidos {
      * @return String
      */
     public String mostrarFilaPedidos() {
+        if (this.totalPedidos == 0){
+            return "\n[AVISO] Nenhum pedido na Fila";
+        }
         String listaPedidos = "";
         for (Pedido pedido : fila) {
             if (pedido != null) {
