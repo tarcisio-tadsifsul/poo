@@ -46,12 +46,13 @@ public class FilaPedidos {
         }
 
         if (totalPedidos < capacidade) {
+            
             fila[totalPedidos] = pedido;
             idPedidoRecebido = fila[totalPedidos].getIdPedido(); // Guarda em `idPedidoRecebido` o id do último item da
                                                                  // fila antes de incrementar, para usar nas mensagens
             totalPedidos++;
 
-            // AQUI PRECISA chamar adicinarItemPedido()!!!
+            
 
             System.out.println("[OK] Pedido #" + idPedidoRecebido + " Recebido com Sucesso!");
             return true;

@@ -25,7 +25,7 @@
  * ---
  * REQUISITOS - PARTE 3
  * 
- * [] Implemente uma funcionalidade que verifique duplicidade na estrutura de
+ * [✓] Implemente uma funcionalidade que verifique duplicidade na estrutura de
  * dados impedindo novas inserções em caso de dados repetidos.
  * 
  * [] Acrescente ao menu do usuário uma opção que exiba uma mensagem para a
@@ -72,12 +72,14 @@ public class Main {
         System.out.print("| Informe o nome do cliente: ");
         String nomeCliente = sc.next();
         if (!f1.verificarPedidoJaExiste(nomeCliente)) {
-            // aqui agora precisa instanciar o pedido e adicionar na fila:
+            // instanciar o pedido e adicionar na fila:
             f1.adicionarPedidoNaFila(new Pedido(nomeCliente));
 
         } else {
             System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
         }
+        
+        
 
         sc.close();
     }

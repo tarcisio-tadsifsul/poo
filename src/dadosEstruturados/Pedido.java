@@ -11,11 +11,10 @@ public class Pedido {
     private int totalItens;
     private ItemPedido itens[];
     private ItemPedido auxItens[];
-    static String nomeObj;
 
     // Construtores
     public Pedido() {
-        this.idPedido = "PED0" + (++idAux);
+        this.idPedido = "PD" + (++idAux);
         this.cliente = "N/A";
         this.valorTotal = 0.0;
         this.maxItens = 3;
@@ -24,7 +23,7 @@ public class Pedido {
     }
 
     public Pedido(String nomeCliente) {
-        this.idPedido = "PED0" + (++idAux);
+        this.idPedido = "PD" + (++idAux);
         this.cliente = nomeCliente;
         this.valorTotal = 0.0;
         this.maxItens = 2;
