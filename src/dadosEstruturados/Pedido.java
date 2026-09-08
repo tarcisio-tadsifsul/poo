@@ -4,7 +4,7 @@ public class Pedido {
 
     // Atributos
     static int idAux;
-    private int idPedido;
+    private String idPedido;
     private String cliente;
     private double valorTotal;
     private int maxItens;
@@ -15,7 +15,7 @@ public class Pedido {
 
     // Construtores
     public Pedido() {
-        this.idPedido = idAux++;
+        this.idPedido = "PED0" + (++idAux);
         this.cliente = "N/A";
         this.valorTotal = 0.0;
         this.maxItens = 3;
@@ -23,8 +23,8 @@ public class Pedido {
         this.itens = new ItemPedido[maxItens];
     }
 
-    public Pedido(String nomeCliente, int id) {
-        this.idPedido = id;
+    public Pedido(String nomeCliente) {
+        this.idPedido = "PED0" + (++idAux);
         this.cliente = nomeCliente;
         this.valorTotal = 0.0;
         this.maxItens = 2;
@@ -33,7 +33,7 @@ public class Pedido {
     }
 
     // Getters
-    public int getIdPedido() {
+    public String getIdPedido() {
         return idPedido;
     }
 
@@ -42,21 +42,21 @@ public class Pedido {
     }
 
     // Metodos
-    
+
     /**
      * Metodo para criar o pedido
      * 
      */
-    public void criarPedido(String nomeCliente){
-        if (!nomeCliente.equalsIgnoreCase("")){
-            ++idAux;
-            nomeObj = "PED00" + idAux;
-            Pedido nomeObj = new Pedido(nomeCliente, idAux);            
-        } else {
-            System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
-        }
-    }
-    
+    // public void criarPedido(String nomeCliente){
+    // if (!nomeCliente.equalsIgnoreCase("")){
+    // ++idAux;
+    // nomeObj = "PED00" + idAux;
+    // Pedido nomeObj = new Pedido(nomeCliente, idAux);
+    // } else {
+    // System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
+    // }
+    // }
+
     /**
      * Adiciona um item no final do vetor itens e retorna uma uma String
      * (mensagem sucesso/erro)
@@ -75,7 +75,7 @@ public class Pedido {
             itens[totalItens] = item;
             totalItens++;
             this.valorTotal = somaTotalPedido();
-            itemAdicionado = true;           
+            itemAdicionado = true;
         } else {
             itemAdicionado = false;
         }
@@ -94,13 +94,13 @@ public class Pedido {
      * 
      */
     private void aumentaVetorItens() {
-        //int aumentaMaxItens = maxItens * 2;
+        // int aumentaMaxItens = maxItens * 2;
         int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
         auxItens = new ItemPedido[aumentaMaxItens];
-        
+
         for (int i = 0; i < maxItens; i++) {
-            if (itens[i] != null){
-                auxItens[i] = itens[i];                
+            if (itens[i] != null) {
+                auxItens[i] = itens[i];
             }
         }
         maxItens = aumentaMaxItens;

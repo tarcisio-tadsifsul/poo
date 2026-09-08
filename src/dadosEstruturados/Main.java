@@ -1,5 +1,3 @@
-package dadosEstruturados;
-
 /**
  * ---
  * REQUISITOS - PARTE 1
@@ -18,22 +16,26 @@ package dadosEstruturados;
  * REQUISITOS - PARTE 2
  * 
  * [✓] Implemente uma funcionalidade que torne a estrutura de dados dinâmica.
- * Ou seja, se o usuário tentar incluir um dado com o vetor em sua capacidade máxima,
+ * Ou seja, se o usuário tentar incluir um dado com o vetor em sua capacidade
+ * máxima,
  * o sistema deve comportar essa necessidade, aumentando automaticamente
  * a capacidade de armazenamento do array em 50% do tamanho anterior.
  *
- * [?] No método principal, crie um menu para testar a implementação.
  *
  * ---
  * REQUISITOS - PARTE 3
  * 
- * [] Implemente uma funcionalidade que verifique duplicidade na estrutura de dados
- * impedindo novas inserções em caso de dados repetidos.
+ * [] Implemente uma funcionalidade que verifique duplicidade na estrutura de
+ * dados impedindo novas inserções em caso de dados repetidos.
  * 
- * [] Acrescente ao menu do usuário uma opção que exiba uma mensagem para a pesquisa
- * de um determinado elemento (se está presente ou ausente na estrutura).
+ * [] Acrescente ao menu do usuário uma opção que exiba uma mensagem para a
+ * pesquisa de um determinado elemento (se está presente ou ausente na
+ * estrutura).
  * 
- * [] Adicione uma funcionalidade que retorne o index para um elemento pesquisado. 
+ * [] Adicione uma funcionalidade que retorne o index para um elemento
+ * pesquisado.
+ * 
+ * [] No método principal, crie um menu para testar a implementação.
  * 
  * ---
  * TESTES:
@@ -43,30 +45,40 @@ package dadosEstruturados;
  *
  * DICA:
  * # Utilize o método de impressão a cada operação para analisar o resultado.
- * # Siga as convenções de código, nomenclatura e sintaxe padrão da linguagem Java.
+ * # Siga as convenções de código, nomenclatura e sintaxe padrão da linguagem
+ * Java.
  *
  */
+
+package dadosEstruturados;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
+
         ItemPedido item1 = new ItemPedido("Xis Salada", 24.90);
         ItemPedido item2 = new ItemPedido("Hot Dog", 18.90);
         ItemPedido item3 = new ItemPedido("Batata Frita", 14.90);
         ItemPedido item4 = new ItemPedido("Refrigerante", 6.20);
         ItemPedido item5 = new ItemPedido("Agua", 3.50);
-        
-//
+
+        //
         FilaPedidos f1 = new FilaPedidos();
 
         System.out.println("\nIniciar Pedidos:\n--------------------");
-        
-        System.out.println("| Informe o nome do cliente:");
+
+        System.out.print("| Informe o nome do cliente: ");
         String nomeCliente = sc.next();
-        if (f1.verificarPedidoJaExiste(nomeCliente)){
-            // aqui agora precisa instanciar o pedido
+        if (!f1.verificarPedidoJaExiste(nomeCliente)) {
+            // aqui agora precisa instanciar o pedido e adicionar na fila:
+            f1.adicionarPedidoNaFila(new Pedido(nomeCliente));
+
+        } else {
+            System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
         }
 
+        sc.close();
     }
 }

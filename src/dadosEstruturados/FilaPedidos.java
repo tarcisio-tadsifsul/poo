@@ -7,6 +7,8 @@ public class FilaPedidos {
     private Pedido auxFila[];
     private int capacidade;
     private int totalPedidos;
+    private String idPedidoRecebido;
+    private String idPedidoRealizado;
 
     // Construtor
     public FilaPedidos() {
@@ -15,13 +17,18 @@ public class FilaPedidos {
         this.fila = new Pedido[capacidade];
     }
 
+    // Getters | Setters
+    public int getTotalPedidos() {
+        return this.totalPedidos;
+    }
+
     // Metodos
-    public boolean verificarPedidoJaExiste(String nome){
-        if (!nome.equalsIgnoreCase("") && fila.length > 0){
-            for (int i = 0; i < totalPedidos; i++) {                
-                if (fila[i] != null){
+    public boolean verificarPedidoJaExiste(String nome) {
+        if (!nome.equalsIgnoreCase("") && fila.length > 0) {
+            for (int i = 0; i < totalPedidos; i++) {
+                if (fila[i] != null) {
                     return fila[i].getCliente().equalsIgnoreCase(nome); // retorna true ou false
-                }                
+                }
             }
         }
         return false;
@@ -29,18 +36,22 @@ public class FilaPedidos {
 
     /**
      * Metodo enqueue para inserção no fim da fila
+     * 
      * @param pedido
      * @return
      */
     public boolean adicionarPedidoNaFila(Pedido pedido) {
-        if (totalPedidos == capacidade){
+        if (totalPedidos == capacidade) {
             this.aumentaVetorPedidos();
         }
 
         if (totalPedidos < capacidade) {
             fila[totalPedidos] = pedido;
-            int idPedidoRecebido = fila[totalPedidos].getIdPedido(); // Guarda em `idPedidoRecebido` o id do último item da fila antes de incrementar, para usar nas mensagens
+            idPedidoRecebido = fila[totalPedidos].getIdPedido(); // Guarda em `idPedidoRecebido` o id do último item da
+                                                                 // fila antes de incrementar, para usar nas mensagens
             totalPedidos++;
+
+            // AQUI PRECISA chamar adicinarItemPedido()!!!
 
             System.out.println("[OK] Pedido #" + idPedidoRecebido + " Recebido com Sucesso!");
             return true;
@@ -49,33 +60,35 @@ public class FilaPedidos {
             return false;
         }
     }
-    
+
     /**
      * Aumenta a dimensão do vetor de pedidos
      *
      */
-    private void aumentaVetorPedidos(){
+    private void aumentaVetorPedidos() {
         int aumentaCapacidade = capacidade + Math.round(capacidade * 1.5f);
         auxFila = new Pedido[aumentaCapacidade];
-        
+
         for (int i = 0; i < capacidade; i++) {
-            if (fila[i] != null){
+            if (fila[i] != null) {
                 auxFila[i] = fila[i];
             }
         }
-        
+
         capacidade = aumentaCapacidade;
         fila = auxFila;
     }
 
     /**
      * Metodo dequeue para remoção do início da fila
+     * 
      * @return boolean
      */
     public boolean removerPedidoDaFila() {
 
-        // Guarda em `idPedidoRealizado` o id do primeiro item da fila antes de remover para usar nas mensagens
-        int idPedidoRealizado = fila[0].getIdPedido(); 
+        // Guarda em `idPedidoRealizado` o id do primeiro item da fila antes de remover
+        // para usar nas mensagens
+        idPedidoRealizado = fila[0].getIdPedido();
 
         if (totalPedidos > 0) {
 
@@ -96,10 +109,11 @@ public class FilaPedidos {
 
     /**
      * printQueue para exibição linear dos dados armazenados
+     * 
      * @return String
      */
     public String mostrarFilaPedidos() {
-        if (this.totalPedidos == 0){
+        if (this.totalPedidos == 0) {
             return "\n[AVISO] Nenhum pedido na Fila";
         }
         String listaPedidos = "";
