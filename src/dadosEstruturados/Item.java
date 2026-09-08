@@ -1,18 +1,18 @@
 package dadosEstruturados;
 
-public class ItemPedido {
+public class Item {
 
     // Atributos
     private String nome;
     private double valorUnitario;
 
     // Construtores
-    public ItemPedido() {
+    public Item() {
         this.nome = "N/D";
         this.valorUnitario = 0.0;
     }
 
-    public ItemPedido(String nome, double valorUnt) {
+    public Item(String nome, double valorUnt) {
         this.nome = nome;
         this.valorUnitario = valorUnt;
     }

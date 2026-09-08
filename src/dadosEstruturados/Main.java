@@ -56,31 +56,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        ItemPedido item1 = new ItemPedido("Xis Salada", 24.90);
-        ItemPedido item2 = new ItemPedido("Hot Dog", 18.90);
-        ItemPedido item3 = new ItemPedido("Batata Frita", 14.90);
-        ItemPedido item4 = new ItemPedido("Refrigerante", 6.20);
-        ItemPedido item5 = new ItemPedido("Agua", 3.50);
-
-        //
-        FilaPedidos f1 = new FilaPedidos();
-
-        System.out.println("\nIniciar Pedidos:\n--------------------");
-
-        System.out.print("| Informe o nome do cliente: ");
-        String nomeCliente = sc.next();
-        if (!f1.verificarPedidoJaExiste(nomeCliente)) {
-            // instanciar o pedido e adicionar na fila:
-            f1.adicionarPedidoNaFila(new Pedido(nomeCliente));
-
-        } else {
-            System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
-        }
-        
-        
-
-        sc.close();
-    }
+        Menu menu = new Menu();
+        menu.start();
+    }    
 }

@@ -9,8 +9,8 @@ public class Pedido {
     private double valorTotal;
     private int maxItens;
     private int totalItens;
-    private ItemPedido itens[];
-    private ItemPedido auxItens[];
+    private Item itens[];
+    private Item auxItens[];
 
     // Construtores
     public Pedido() {
@@ -19,7 +19,7 @@ public class Pedido {
         this.valorTotal = 0.0;
         this.maxItens = 3;
         this.totalItens = 0;
-        this.itens = new ItemPedido[maxItens];
+        this.itens = new Item[maxItens];
     }
 
     public Pedido(String nomeCliente) {
@@ -28,7 +28,7 @@ public class Pedido {
         this.valorTotal = 0.0;
         this.maxItens = 2;
         this.totalItens = 0;
-        this.itens = new ItemPedido[maxItens];
+        this.itens = new Item[maxItens];
     }
 
     // Getters
@@ -63,7 +63,7 @@ public class Pedido {
      * @param item
      * @return String com mensagem de sucesso/erro
      */
-    public void adicinarItemPedido(ItemPedido item) {
+    public void adicinarItem(Item item) {
         boolean itemAdicionado = false;
 
         if (totalItens == maxItens) {
@@ -95,7 +95,7 @@ public class Pedido {
     private void aumentaVetorItens() {
         // int aumentaMaxItens = maxItens * 2;
         int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
-        auxItens = new ItemPedido[aumentaMaxItens];
+        auxItens = new Item[aumentaMaxItens];
 
         for (int i = 0; i < maxItens; i++) {
             if (itens[i] != null) {
@@ -112,7 +112,7 @@ public class Pedido {
      *
      * @param nomeItem
      */
-    public void removerItemPedido(String nomeItem) {
+    public void removerItem(String nomeItem) {
         if (totalItens > 0) {
             // loop para encontrar item no vetor
             for (int i = 0; i < totalItens - 1; i++) {
@@ -143,7 +143,7 @@ public class Pedido {
      */
     private double somaTotalPedido() {
         double somaValor = 0;
-        for (ItemPedido item : itens) {
+        for (Item item : itens) {
             if (item != null) {
                 somaValor += item.getValorUnitario();
             }
@@ -170,7 +170,7 @@ public class Pedido {
      */
     public String mostrarPedido() {
         String listaItens = "";
-        for (ItemPedido item : itens) {
+        for (Item item : itens) {
             if (item != null) {
                 listaItens += item.imprimirItem() + "\n";
             }
