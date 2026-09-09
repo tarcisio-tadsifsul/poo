@@ -204,8 +204,6 @@ Em Java: A classe B é usada apenas como parâmetro de método ou variável loca
     - Analogia: Um bloco de notas físico (onde cada página é uma matriz 2D) ou um Cubo Mágico.
     - Exemplo de declaração (C/C++): int cubo[2][3][3]; (2 matrizes de 3x3 sobrepostas)
 
-
-
 ### Java Collections Framework
 
 O Java Collections Framework (JCF) fornece um conjunto de **interfaces** (como `List`, `Set`e `Map`) e um conjunto de **classes** ( `ArrayList`, `HashSet`, `HashMap`, etc.) que implementam essas interfaces.
@@ -230,7 +228,6 @@ São utilizados para armazenar, pesquisar, classificar e organizar dados com mai
 | **Queue**          | ``                             | ``                          | ``                           | ``
 | **Stack**          | ``                             | ``                          | ``                           | ``
 
-
 | Interface      | Classes                            | Descrição               
 | :------------- | :--------------------------------- | :-------------------------- 
 | **List**       | `ArrayList, LinkedList`            | `Coleção ordenada que permite duplicados`                       
@@ -238,6 +235,7 @@ São utilizados para armazenar, pesquisar, classificar e organizar dados com mai
 | **Map**        | `HashMap, TreeMap, LinkedHashMap`  | `Armazena pares de chave-valor com chaves únicas`                       
 
 **Dicas**: para o uso de cada classe, siga regras simples:
+
 - Classes `List` quando a ordem for importante, quando houver duplicatas e quando quiser acessar os elementos por índice.
 - Classes `Set` quando precisar armazenar apenas valores únicos.
 - Classes `Map` quando precisar armazenar pares de chaves e valores, como um nome e seu número de telefone.
@@ -255,10 +253,10 @@ São utilizados para armazenar, pesquisar, classificar e organizar dados com mai
 | **Queue**          | `add(item)`          | `peek() (lê apenas o próximo a sair)` | `Não possui`                            | `remove() ou poll()`
 
 Mais métodos:
+
 - `clear()` para remover todos os elementos do **ArrayList**.
 - `size()` para retornar quantos elementos possui um **ArrayList**. útil em _loop for_ para especificar quantas vezes o loop deve ser executado.
 - `Collections.sort()` para ordenar listas alfabeticamente ou numericamente. Para ordem decrescente, use `Collections.reverseOrder()` como segundo argumento em `sort()` .
-
 
 ### Iteradores
 
@@ -266,29 +264,29 @@ Um iterador é uma forma de percorrer os elementos de uma estrutura de dados. É
 
 Exemplo de iterador com ArrayList:
 
-```Java
-import java.util.ArrayList;
-import java.util.Iterator;
+    ```Java
+    import java.util.ArrayList;
+    import java.util.Iterator;
 
-public class Main {
-  public static void main(String[] args) {
-    // Cria um ArrayList de Strings
-    ArrayList<String> cars = new ArrayList<String>();
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
-    cars.add("Mazda");
+    public class Main {
+        public static void main(String[] args) {
+            // Cria um ArrayList de Strings
+            ArrayList<String> cars = new ArrayList<String>();
+            cars.add("Volvo");
+            cars.add("BMW");
+            cars.add("Ford");
+            cars.add("Mazda");
 
-    // Obtem um Iterador para ArrayList
-    Iterator<String> it = cars.iterator();
+            // Obtem um Iterador para ArrayList
+            Iterator<String> it = cars.iterator();
 
-    // Percorra a lista usando o iterador
-    while(it.hasNext()) {
-      System.out.println(it.next());
+            // Percorra a lista usando o iterador
+            while(it.hasNext()) {
+            System.out.println(it.next());
+            }
+        }
     }
-  }
-}
-```
+    ```
 
 ### Exemplos
 
@@ -297,93 +295,97 @@ public class Main {
 A partir do Java 7, você não precisa repetir o tipo de dado no lado direito do `=` (na hora de dar o `new`). O Java é inteligente o suficiente para inferir o tipo pelo que você declarou no lado esquerdo.
 Você pode usar apenas `<>`, conhecido como _operador diamante_.
 
-```Java
-// Como era:
-ArrayList<String> nomes = new ArrayList<String>();
+    ```Java
+        // Como era:
+        ArrayList<String> nomes = new ArrayList<String>();
 
-// Forma moderna:
-Interface<Tipo> nomeConjunto = new ClasseConcreta<>();
-```
+        // Forma moderna:
+        Interface<Tipo> nomeConjunto = new ClasseConcreta<>();
+    ```
 
-```Java
-// O tipo da variável é List (Interface), mas o objeto real é ArrayList (Classe)
-List<String> listaDeCompras = new ArrayList<>();
+    ```Java
+        // O tipo da variável é List (Interface), mas o objeto real é ArrayList (Classe)
+        List<String> listaDeCompras = new ArrayList<>();
 
-// Tipos primitivos (int, double) não podem ser usados nos <>. 
-// Você deve usar as classes "Wrapper" (Integer, Double, etc.)
-List<Integer> idades = new LinkedList<>();
-```
+        // Tipos primitivos (int, double) não podem ser usados nos <>. 
+        // Você deve usar as classes "Wrapper" (Integer, Double, etc.)
+        List<Integer> idades = new LinkedList<>();
+    ```
 
-```Java
-// Para conjuntos
-Set<String> cpfsUnicos = new HashSet<>();
-```
+    ```Java
+        // Para conjuntos
+        Set<String> cpfsUnicos = new HashSet<>();
+    ```
 
-```Java
-// Mapas exigem dois tipos, um para a Chave e outro para o Valor.
-Map<String, Integer> idadePorNome = new HashMap<>();
-```
+    ```Java
+        // Mapas exigem dois tipos, um para a Chave e outro para o Valor.
+        Map<String, Integer> idadePorNome = new HashMap<>();
+    ```
 
 #### ArrayList
-```Java
-// Import da classe ArrayList
-import java.util.ArrayList;
 
-public class Main {
-  public static void main(String[] args) {
-    // Cria o objeto ArrayList chamado cars
-    ArrayList<String> cars = new ArrayList<String>();
+    ```Java
+    // Import da classe ArrayList
+    import java.util.ArrayList;
 
-    // Adiciona elementos no objeto cars
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
-    cars.add("Mazda");
-    System.out.println(cars);
-  }
-}
-```
+    public class Main {
+        public static void main(String[] args) {
+            // Cria o objeto ArrayList chamado cars
+            ArrayList<String> cars = new ArrayList<String>();
+
+            // Adiciona elementos no objeto cars
+            cars.add("Volvo");
+            cars.add("BMW");
+            cars.add("Ford");
+            cars.add("Mazda");
+            System.out.println(cars);
+        }
+    }
+    ```
 
 #### HashSet
 
-```Java
-// Import da classe HashSet
-import java.util.HashSet;
+    ```Java
+    // Import da classe HashSet
+    import java.util.HashSet;
 
-public class Main {
-  public static void main(String[] args) {
-    // Cria o objeto HashSet chamado cars
-    HashSet<String> cars = new HashSet<String>();
+    public class Main {
+        public static void main(String[] args) {
+            // Cria o objeto HashSet chamado cars
+            HashSet<String> cars = new HashSet<String>();
 
-    // Adiciona elementos no objeto cars
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
-    cars.add("BMW");  // Duplicate
-    cars.add("Mazda");
-    System.out.println(cars);
-  }
-}
-```
+            // Adiciona elementos no objeto cars
+            cars.add("Volvo");
+            cars.add("BMW");
+            cars.add("Ford");
+            cars.add("BMW");  // Duplicate
+            cars.add("Mazda");
+            System.out.println(cars);
+        }
+    }
+    ```
 
 #### HashMap
 
-```Java
-// Import da classe HashMap
-import java.util.HashMap;
+    ```Java
+    // Import da classe HashMap
+        import java.util.HashMap;
 
-public class Main {
-  public static void main(String[] args) {
-    // Cria o objeto HashMap chamado capitalCities
-    HashMap<String, String> capitalCities = new HashMap<String, String>();
+        public class Main {
+            public static void main(String[] args) {
+                // Cria o objeto HashMap chamado capitalCities
+                HashMap<String, String> capitalCities = new HashMap<String, String>();
 
-    // Adiciona chave e valor (Country, City)
-    capitalCities.put("England", "London");
-    capitalCities.put("Germany", "Berlin");
-    capitalCities.put("Norway", "Oslo");
-    capitalCities.put("USA", "Washington DC");
-    System.out.println(capitalCities);
-  }
-}
-```
+                // Adiciona chave e valor (Country, City)
+                capitalCities.put("England", "London");
+                capitalCities.put("Germany", "Berlin");
+                capitalCities.put("Norway", "Oslo");
+                capitalCities.put("USA", "Washington DC");
+                System.out.println(capitalCities);
+            }
+        }
+    ```
+Conceitos a pesquisar:    
+Fila (Queue)
+Pilha (stack)
 

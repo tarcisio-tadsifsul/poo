@@ -16,9 +16,8 @@ public class Cardapio {
     
     // Inicializa items no cardápio
     
-    public adicionarItemCardapio(){
-        
-    }
+    //public adicionarItemCardapio(){}
+    
     Item item1 = new Item("Xis Salada", 24.90);
     Item item2 = new Item("Hot Dog", 18.90);
     Item item3 = new Item("Batata Frita", 14.90);
@@ -34,11 +33,10 @@ public class Cardapio {
             }
         }
         return "\n--------------------"
-                + "\nITEM #" + this.idItem + " | Nome: " + item 
+                + "\nITEM #" + this.idItem + " | Nome: " 
                 + "\n--------------------"
                 + "\n" + listaCardapio
                 + "--------------------"
                 + "\n";
-    }
     }
 }
