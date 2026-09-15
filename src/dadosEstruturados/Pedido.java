@@ -4,7 +4,7 @@ public class Pedido {
 
     // Atributos
     static int idAux;
-    private String idPedido;
+    private int idPedido;
     private String cliente;
     private double valorTotal;
     private int maxItens;
@@ -14,7 +14,7 @@ public class Pedido {
 
     // Construtores
     public Pedido() {
-        this.idPedido = "PD" + (++idAux);
+        this.idPedido = ++idAux;
         this.cliente = "N/A";
         this.valorTotal = 0.0;
         this.maxItens = 3;
@@ -23,16 +23,16 @@ public class Pedido {
     }
 
     public Pedido(String nomeCliente) {
-        this.idPedido = "PD" + (++idAux);
+        this.idPedido = ++idAux;
         this.cliente = nomeCliente;
         this.valorTotal = 0.0;
-        this.maxItens = 2;
+        this.maxItens = 10;
         this.totalItens = 0;
         this.itens = new Item[maxItens];
     }
 
     // Getters
-    public String getIdPedido() {
+    public int getIdPedido() {
         return idPedido;
     }
 
@@ -43,18 +43,22 @@ public class Pedido {
     // Metodos
 
     /**
-     * Metodo para criar o pedido
+     * Aumenta a dimensão do vetor de itens
      * 
      */
-    // public void criarPedido(String nomeCliente){
-    // if (!nomeCliente.equalsIgnoreCase("")){
-    // ++idAux;
-    // nomeObj = "PED00" + idAux;
-    // Pedido nomeObj = new Pedido(nomeCliente, idAux);
-    // } else {
-    // System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
-    // }
-    // }
+    private void aumentaVetorItens() {
+        // int aumentaMaxItens = maxItens * 2;
+        int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
+        auxItens = new Item[aumentaMaxItens];
+
+        for (int i = 0; i < maxItens; i++) {
+            if (itens[i] != null) {
+                auxItens[i] = itens[i];
+            }
+        }
+        maxItens = aumentaMaxItens;
+        itens = auxItens;
+    }
 
     /**
      * Adiciona um item no final do vetor itens e retorna uma uma String
@@ -89,37 +93,24 @@ public class Pedido {
     }
 
     /**
-     * Aumenta a dimensão do vetor de itens
-     * 
-     */
-    private void aumentaVetorItens() {
-        // int aumentaMaxItens = maxItens * 2;
-        int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
-        auxItens = new Item[aumentaMaxItens];
-
-        for (int i = 0; i < maxItens; i++) {
-            if (itens[i] != null) {
-                auxItens[i] = itens[i];
-            }
-        }
-        maxItens = aumentaMaxItens;
-        itens = auxItens;
-    }
-
-    /**
      * Remove um item no pedido, reordena o vetor para não ter posições null no
      * meio do vetor e retorna uma uma String (mensagem sucesso/erro)
      *
      * @param nomeItem
      */
-    public void removerItem(String nomeItem) {
+    public void removerItem(String numItem) {
         if (totalItens > 0) {
             // loop para encontrar item no vetor
             for (int i = 0; i < totalItens - 1; i++) {
-                if (itens[i].getNome().compareToIgnoreCase(nomeItem) > 0) {
+                if ((i + 1) == Integer.parseInt(numItem)) {
                     deduzTotalPedido(itens[i].getValorUnitario());
                     itens[i] = null;
                 }
+
+                // if (itens[i].getNome().equalsIgnoreCase(nomeItem)) {
+                // deduzTotalPedido(itens[i].getValorUnitario());
+                // itens[i] = null;
+                // }
             }
             // loop para reordenar itens no vetor
             for (int i = 0; i < totalItens - 1; i++) {
@@ -129,9 +120,11 @@ public class Pedido {
                 }
             }
             totalItens--;
-            System.out.printf("Item removido do Pedido #%d!\n", idPedido);
+            System.out.printf("Item removido do Pedido!");
+            // System.out.printf("Item removido do Pedido #%d!\n", idPedido);
         } else {
-            System.out.printf("Item não removido o Pedido #%d!\n", idPedido);
+            System.out.printf("Item não removido do Pedido!");
+            // System.out.printf("Item não removido o Pedido #%d!\n", idPedido);
         }
 
     }
@@ -164,11 +157,11 @@ public class Pedido {
     }
 
     /**
-     * Mostra pedido com itens
+     * Mostra pedido completo com itens e total
      *
      * @return String
      */
-    public String mostrarPedido() {
+    public String mostrarPedidoCompleto() {
         String listaItens = "";
         for (Item item : itens) {
             if (item != null) {
@@ -176,12 +169,31 @@ public class Pedido {
             }
         }
         return "\n--------------------"
-                + "\nPEDIDO #" + this.idPedido + " | Cliente: " + this.cliente
+                + "\nPEDIDO #" + this.idPedido + " - Cliente: " + this.cliente
                 + "\n--------------------"
                 + "\n" + listaItens
                 + "--------------------"
                 + "\nTotal Pedido: R$ " + this.valorTotal
                 + "\n";
+    }
+
+    /**
+     * Mostra pedido completo com itens e total
+     *
+     * @return String
+     */
+    public String mostrarItensPedido() {
+        if (itens.length > 0) {
+            String listaItens = "";
+
+            for (int i = 0; i < itens.length; i++) {
+                if (itens[i] != null) {
+                    listaItens += (i + 1) + ". " + itens[i].imprimirItem() + "\n";
+                }
+            }
+            return listaItens;
+        }
+        return "\n[SEM ITENS NO CARDAPIO]\n";
     }
 
 }

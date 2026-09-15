@@ -36,7 +36,7 @@ public class Item {
 
     // Metodos
     public String imprimirItem() {
-        return "Item: " + this.nome + " R$ " + this.valorUnitario;
+        return this.nome + " | R$ " + this.valorUnitario;
     }
 
 }
