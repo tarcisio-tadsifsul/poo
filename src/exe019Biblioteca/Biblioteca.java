@@ -4,33 +4,31 @@ package exe019Biblioteca;
 import java.time.LocalDate;
 
 public class Biblioteca {
-    
+
     Emprestimo[] emprestimos = new Emprestimo[100];
-    
+
     public void realizarEmprestimo(
-                    Usuario usuario, 
-                    Livro livro, 
-                    LocalDate dataEmprestimo,
-                    LocalDate dataDevolucao
-        ){
-        if (livro != null || usuario != null){
+            Usuario usuario,
+            Livro livro,
+            LocalDate dataEmprestimo,
+            LocalDate dataDevolucao) {
+        if (livro != null || usuario != null) {
             for (int i = 0; i < emprestimos.length; i++) {
-            if (emprestimos[i] != null) {
-                Emprestimo emprestimos = new Emprestimo(
-                                            usuario,
-                                            livro,
-                                            dataEmprestimo,
-                                            dataDevolucao
-                );
+                if (emprestimos[i] != null) {
+                    emprestimos[i] = new Emprestimo(
+                            usuario,
+                            livro,
+                            dataEmprestimo,
+                            dataDevolucao);
+                }
             }
-        }           
-        }                   
+        }
     }
-    
-    public boolean devolverLivro(Livro livro){
-        if (livro != null){
-            for(int i=0; i<emprestimos.length; i++){
-                if (emprestimos[i].getLivro().getTitulo().equals(livro.getTitulo())){
+
+    public boolean devolverLivro(Livro livro) {
+        if (livro != null) {
+            for (int i = 0; i < emprestimos.length; i++) {
+                if (emprestimos[i].getLivro().getTitulo().equals(livro.getTitulo())) {
                     emprestimos[i].setLivro(null);
                     emprestimos[i].setDataDevolucao(LocalDate.of(2026, 05, 26));
                     return true;
@@ -39,8 +37,8 @@ public class Biblioteca {
         }
         return false;
     }
-    
-    public String imprimirEmprestimos(){
+
+    public String imprimirEmprestimos() {
         String dados = "";
         for (int i = 0; i < emprestimos.length; i++) {
             if (emprestimos[i] != null) {
@@ -48,5 +46,9 @@ public class Biblioteca {
             }
         }
         return dados;
+    }
+
+    public String mostrarEmprestimo() {
+        return emprestimos[0].exibirEmprestimo();
     }
 }

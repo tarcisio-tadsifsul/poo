@@ -2,9 +2,8 @@
 package exe020Empresa;
 
 public class Gerente extends Funcionario {
-    
+
     // Atributos
-    private int vetor[] = new int[10];    
     private Funcionario departamento[];
     private int qtdFuncionrios;
 
@@ -15,8 +14,7 @@ public class Gerente extends Funcionario {
 
     public Gerente(
             Funcionario[] departamento,
-            int qtdFuncionrios
-        ) {
+            int qtdFuncionrios) {
         this.departamento = departamento;
         this.qtdFuncionrios = qtdFuncionrios;
     }
@@ -26,8 +24,7 @@ public class Gerente extends Funcionario {
             int qtdFuncionrios,
             String nome,
             String cpf,
-            double salario
-        ) {
+            double salario) {
         super(nome, cpf, salario);
         this.departamento = departamento;
         this.qtdFuncionrios = qtdFuncionrios;
@@ -49,8 +46,7 @@ public class Gerente extends Funcionario {
     public void setQtdFuncionrios(int qtdFuncionrios) {
         this.qtdFuncionrios = qtdFuncionrios;
     }
-    
-    
+
     // Métodos
-    
+
 }

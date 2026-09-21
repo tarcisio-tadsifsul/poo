@@ -1,0 +1,199 @@
+package atividadeFifo;
+
+public class Pedido {
+
+    // Atributos
+    static int idAux;
+    private int idPedido;
+    private String cliente;
+    private double valorTotal;
+    private int maxItens;
+    private int totalItens;
+    private Item itens[];
+    private Item auxItens[];
+
+    // Construtores
+    public Pedido() {
+        this.idPedido = ++idAux;
+        this.cliente = "N/A";
+        this.valorTotal = 0.0;
+        this.maxItens = 3;
+        this.totalItens = 0;
+        this.itens = new Item[maxItens];
+    }
+
+    public Pedido(String nomeCliente) {
+        this.idPedido = ++idAux;
+        this.cliente = nomeCliente;
+        this.valorTotal = 0.0;
+        this.maxItens = 10;
+        this.totalItens = 0;
+        this.itens = new Item[maxItens];
+    }
+
+    // Getters
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    // Metodos
+
+    /**
+     * Aumenta a dimensão do vetor de itens
+     * 
+     */
+    private void aumentaVetorItens() {
+        // int aumentaMaxItens = maxItens * 2;
+        int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
+        auxItens = new Item[aumentaMaxItens];
+
+        for (int i = 0; i < maxItens; i++) {
+            if (itens[i] != null) {
+                auxItens[i] = itens[i];
+            }
+        }
+        maxItens = aumentaMaxItens;
+        itens = auxItens;
+    }
+
+    /**
+     * Adiciona um item no final do vetor itens e retorna uma uma String
+     * (mensagem sucesso/erro)
+     *
+     * @param item
+     * @return String com mensagem de sucesso/erro
+     */
+    public void adicinarItem(Item item) {
+        boolean itemAdicionado = false;
+
+        if (totalItens == maxItens) {
+            this.aumentaVetorItens();
+        }
+
+        if (totalItens < maxItens) {
+            itens[totalItens] = item;
+            totalItens++;
+            this.valorTotal = somaTotalPedido();
+            itemAdicionado = true;
+        } else {
+            itemAdicionado = false;
+        }
+
+        // Mensagem Sucesso|Erro
+        if (itemAdicionado) {
+            System.out.println("Item adicionado no Pedido #" + idPedido);
+        } else {
+            System.out.println("Item " + item.getNome() + " não adicionado no Pedido #" + idPedido);
+        }
+
+    }
+
+    /**
+     * Remove um item no pedido, reordena o vetor para não ter posições null no
+     * meio do vetor e retorna uma uma String (mensagem sucesso/erro)
+     *
+     * @param nomeItem
+     */
+    public void removerItem(String numItem) {
+        if (totalItens > 0) {
+            // loop para encontrar item no vetor
+            for (int i = 0; i < totalItens - 1; i++) {
+                if ((i + 1) == Integer.parseInt(numItem)) {
+                    deduzTotalPedido(itens[i].getValorUnitario());
+                    itens[i] = null;
+                }
+
+                // if (itens[i].getNome().equalsIgnoreCase(nomeItem)) {
+                // deduzTotalPedido(itens[i].getValorUnitario());
+                // itens[i] = null;
+                // }
+            }
+            // loop para reordenar itens no vetor
+            for (int i = 0; i < totalItens - 1; i++) {
+                if (itens[i] == null && itens[i + 1] != null) {
+                    itens[i] = itens[i + 1];
+                    itens[i + 1] = null;
+                }
+            }
+            totalItens--;
+            System.out.printf("Item removido do Pedido!");
+            // System.out.printf("Item removido do Pedido #%d!\n", idPedido);
+        } else {
+            System.out.printf("Item não removido do Pedido!");
+            // System.out.printf("Item não removido o Pedido #%d!\n", idPedido);
+        }
+
+    }
+
+    /**
+     * Calcula o valor total do pedido quando um item é adicionado ao pedido
+     *
+     * @return double
+     */
+    private double somaTotalPedido() {
+        double somaValor = 0;
+        for (Item item : itens) {
+            if (item != null) {
+                somaValor += item.getValorUnitario();
+            }
+        }
+        return somaValor;
+    }
+
+    /**
+     * Calcula o valor total do pedido quando um item é removido do pedido
+     *
+     * @param valor
+     * @return double
+     */
+    private double deduzTotalPedido(double valor) {
+        double deduzValor = valor;
+        this.valorTotal -= deduzValor;
+        return this.valorTotal;
+    }
+
+    /**
+     * Mostra pedido completo com itens e total
+     *
+     * @return String
+     */
+    public String mostrarPedidoCompleto() {
+        String listaItens = "";
+        for (Item item : itens) {
+            if (item != null) {
+                listaItens += item.imprimirItem() + "\n";
+            }
+        }
+        return "\n--------------------"
+                + "\nPEDIDO #" + this.idPedido + " - Cliente: " + this.cliente
+                + "\n--------------------"
+                + "\n" + listaItens
+                + "--------------------"
+                + "\nTotal Pedido: R$ " + this.valorTotal
+                + "\n";
+    }
+
+    /**
+     * Mostra pedido completo com itens e total
+     *
+     * @return String
+     */
+    public String mostrarItensPedido() {
+        if (itens.length > 0) {
+            String listaItens = "";
+
+            for (int i = 0; i < itens.length; i++) {
+                if (itens[i] != null) {
+                    listaItens += (i + 1) + ". " + itens[i].imprimirItem() + "\n";
+                }
+            }
+            return listaItens;
+        }
+        return "\n[SEM ITENS NO CARDAPIO]\n";
+    }
+
+}
