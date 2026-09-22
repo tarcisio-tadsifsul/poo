@@ -10,6 +10,6 @@ A estrutura deve conter obrigatoriamente:
     [✓] Método para evitar duplicidade de elementos na mesma pilha
     [✓] Método para verificar se um dado elemento está ou não na estrutura
 
-[] Teste a implementação no método principal, a partir de um menu interativo (console) que permite consumir todas as opções disponíveis da estrutura de dados, garantindo que a opção de encerrar o programa invoque o Garbage Collector explicitamente.
+[✓] Teste a implementação no método principal, a partir de um menu interativo (console) que permite consumir todas as opções disponíveis da estrutura de dados, garantindo que a opção de encerrar o programa invoque o Garbage Collector explicitamente.
 
 Siga as convenções de código, nomenclatura e sintaxe padrão da linguagem Java.

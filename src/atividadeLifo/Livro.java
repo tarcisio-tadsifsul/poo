@@ -10,7 +10,7 @@ public class Livro {
         this.idLivro = ++auxId;
     }
 
-    public int getidLivro() {
+    public int getIdLivro() {
         return idLivro;
     }
 
@@ -22,8 +22,7 @@ public class Livro {
         this.autor = autor;
     }
 
-    public String imprimirLivro(){
+    public String imprimirLivro() {
         return "[ID-" + this.idLivro + "] | Livro: " + this.nome + " | Autor: " + this.autor;
     }
 }
-

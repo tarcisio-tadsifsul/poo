@@ -17,6 +17,15 @@ public class ColecaoLivros {
         colecao[4] = new Livro("Historia da Informação", "Pedro Dados");
     }
 
+    public boolean verificaLivroPorId(int id) {
+        for (int i = 0; i < colecao.length; i++) {
+            if (colecao[i] != null && colecao[i].getIdLivro() == (id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String mostrarColecao() {
         if (colecao.length > 0) {
             String listaLivrosColecao = "";

@@ -29,41 +29,44 @@ public class PilhaLivros {
 
     /**
      * Métodos de adicionar livros no topo da pilha, conforme a política LIFO
+     * 
      * @param livro
      * @return boolean
      */
-    public Boolean adicionarLivroNaPilha(Livro livro){
+    public Boolean adicionarLivroNaPilha(Livro livro) {
         if (this.quantidade == this.max) {
             this.aumentaCapacidadePilha();
         }
-        if(this.quantidade < this.max){
+        if (this.quantidade < this.max) {
 
-            if (!verificarDuplicadePilha(livro.getidLivro())) {
+            if (!verificarDuplicadePilha(livro.getIdLivro())) {
                 this.topo++;
                 pilhaLivros[topo] = livro;
-                this.quantidade++;         
+                this.quantidade++;
                 return true;
-            }            
-        }        
+            }
+        }
         return false;
     }
 
     /**
      * Métodos de remover último livro na pilha, conforme a política LIFO
+     * 
      * @return boolean
      */
-    public Boolean removerLivroDaPilha(){
-        if (quantidade > 0 ){           
-            this.pilhaLivros[topo] = null; 
+    public Boolean removerLivroDaPilha() {
+        if (quantidade > 0) {
+            this.pilhaLivros[topo] = null;
             this.topo--;
             this.quantidade--;
             return true;
-        }         
+        }
         return false;
     }
 
     /**
-     * método para redimensionar a estrutura, tornando-a dinâmica sempre que necessário
+     * método para redimensionar a estrutura, tornando-a dinâmica sempre que
+     * necessário
      * 
      */
     private void aumentaCapacidadePilha() {
@@ -82,40 +85,43 @@ public class PilhaLivros {
 
     /**
      * Método para ver a quantidade de elementos que há na pilha
+     * 
      * @return
      */
-    public int contarLivroNaPilha(){
-        int totalLivros = 0;
+    public int contarLivroNaPilha() {
+        // int totalLivros = 0;
 
-        for (Livro livro: pilhaLivros) {
-            if (livro != null) {
-                totalLivros++;
-            }
-        }
+        // for (Livro livro : pilhaLivros) {
+        // if (livro != null) {
+        // totalLivros++;
+        // }
+        // }
 
-        return totalLivros;
+        return this.quantidade;
     }
 
     /**
      * Método para ver a capacidade máxima de elementos que a pilha suporta
-     * @return
+     * 
+     * @return int
      */
-    public int retonarCapacidadePilha(){
+    public int retonarCapacidadePilha() {
         return this.max;
     }
 
     /**
      * Método para evitar duplicidade de elementos na mesma pilha
+     * 
      * @param idVerificado
      * @return boolean
      */
-    public boolean verificarDuplicadePilha(int idVerificado){
+    public boolean verificarDuplicadePilha(int idVerificado) {
         if (quantidade > 0) {
             for (int i = 0; i < quantidade; i++) {
-                if (pilhaLivros[i].getidLivro() == idVerificado) {
+                if (pilhaLivros[i].getIdLivro() == idVerificado) {
                     return true;
                 }
-                
+
             }
         }
         return false;
@@ -123,27 +129,30 @@ public class PilhaLivros {
 
     /**
      * Método para verificar se um dado elemento está ou não na estrutura
+     * 
      * @param nomePesquisado
      * @param idPesquisado
      * @return boolean
      */
-    public boolean pesquisarLivroPilha(String nomePesquisado, int idPesquisado){
-        if(!nomePesquisado.equalsIgnoreCase("")){    
-            nomePesquisado = nomePesquisado.toLowerCase();        
+    public boolean pesquisarLivroPilha(String nomePesquisado, int idPesquisado) {
+        String livroNomeLower;
+        if (!nomePesquisado.equalsIgnoreCase("")) {
+            nomePesquisado = nomePesquisado.toLowerCase();
             if (quantidade > 0) {
                 for (int i = 0; i < quantidade; i++) {
-                    if (pilhaLivros[i].getNomeLivro().equalsIgnoreCase(nomePesquisado)) {
+                    livroNomeLower = pilhaLivros[i].getNomeLivro().toLowerCase();
+                    if (livroNomeLower.contains(nomePesquisado)) {
                         return true;
-                    }                    
+                    }
                 }
             }
         }
         if (idPesquisado != 0) {
             if (quantidade > 0) {
                 for (int i = 0; i < quantidade; i++) {
-                    if (pilhaLivros[i].getidLivro() == idPesquisado) {
+                    if (pilhaLivros[i].getIdLivro() == idPesquisado) {
                         return true;
-                    }                    
+                    }
                 }
             }
         }
@@ -151,20 +160,20 @@ public class PilhaLivros {
     }
 
     /*
-    * Método para imprimir, que deve retornar uma string da estrutura de dados
-    *
-    */
-    public String imprimirPilhaLivros(){
+     * Método para imprimir, que deve retornar uma string da estrutura de dados
+     *
+     */
+    public String imprimirPilhaLivros() {
         StringBuilder atrBuilder = new StringBuilder();
         if (this.quantidade > 0) {
-            for (Livro livro: pilhaLivros) {     
-                if (livro != null){             
+            for (Livro livro : pilhaLivros) {
+                if (livro != null) {
                     atrBuilder.append(livro.imprimirLivro() + "\n");
-                }                
+                }
             }
             return atrBuilder.toString();
         }
-        
+
         return "Nenhum livro na Pilha!";
     }
 
