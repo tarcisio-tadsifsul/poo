@@ -23,6 +23,6 @@ public class Livro {
     }
 
     public String imprimirLivro() {
-        return "[ID-" + this.idLivro + "] | Livro: " + this.nome + " | Autor: " + this.autor;
+        return "[ID-" + this.idLivro + "] Livro: " + this.nome + " | Autor: " + this.autor;
     }
 }

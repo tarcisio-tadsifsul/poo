@@ -1,0 +1,424 @@
+/**
+ * ---
+ * REQUISITOS - PARTE 1
+ * 
+ * [✓] Implemente uma estrutura de dados do tipo Fila
+ * (política FIFO) em Java.
+ *
+ * [✓] Utilize como dado um objeto que você deve criar, contendo alguns
+ * atributos devidamente encapsulados.
+ *
+ * [✓] A estrutura deve conter obrigatoriamente os métodos: - enqueue para
+ * inserção no fim da fila - dequeue para remoção do início da fila - printQueue
+ * para exibição linear dos dados armazenados.
+ *
+ * ---
+ * REQUISITOS - PARTE 2
+ * 
+ * [✓] Implemente uma funcionalidade que torne a estrutura de dados dinâmica.
+ * Ou seja, se o usuário tentar incluir um dado com o vetor em sua capacidade
+ * máxima,
+ * o sistema deve comportar essa necessidade, aumentando automaticamente
+ * a capacidade de armazenamento do array em 50% do tamanho anterior.
+ *
+ * [?] No método principal, crie um menu para testar a implementação.
+ *
+ * ---
+ * REQUISITOS - PARTE 3
+ * 
+ * [] Implemente uma funcionalidade que verifique duplicidade na estrutura de
+ * dados impedindo novas inserções em caso de dados repetidos.
+ * 
+ * [] Acrescente ao menu do usuário uma opção que exiba uma mensagem para a
+ * pesquisa de um determinado elemento (se está presente ou ausente na
+ * estrutura).
+ * 
+ * [] Adicione uma funcionalidade que retorne o index para um elemento
+ * pesquisado.
+ * 
+ * ---
+ * TESTES:
+ * 
+ * [?] Teste a implementação dentro do método main da classe principal,
+ * realizando todas as operações disponibilizadas.
+ *
+ * DICA:
+ * # Utilize o método de impressão a cada operação para analisar o resultado.
+ * # Siga as convenções de código, nomenclatura e sintaxe padrão da linguagem
+ * Java.
+ *
+ */
+
+package dadosEstruturados;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        ItemPedido item1 = new ItemPedido("Xis Salada", 24.90);
+        ItemPedido item2 = new ItemPedido("Hot Dog", 18.90);
+        ItemPedido item3 = new ItemPedido("Batata Frita", 14.90);
+        ItemPedido item4 = new ItemPedido("Refrigerante", 6.20);
+        ItemPedido item5 = new ItemPedido("Agua", 3.50);
+
+        //
+        FilaPedidos f1 = new FilaPedidos();
+
+        System.out.println("\nIniciar Pedidos:\n--------------------");
+
+        System.out.print("| Informe o nome do cliente: ");
+        String nomeCliente = sc.next();
+        if (!f1.verificarPedidoJaExiste(nomeCliente)) {
+            // aqui agora precisa instanciar o pedido
+
+        }
+
+        sc.close();
+    }
+}
+package dadosEstruturados;
+
+public class FilaPedidos {
+
+    // Atributos
+    private Pedido fila[];
+    private Pedido auxFila[];
+    private int capacidade;
+    private int totalPedidos;
+
+    // Construtor
+    public FilaPedidos() {
+        this.capacidade = 2;
+        this.totalPedidos = 0;
+        this.fila = new Pedido[capacidade];
+    }
+
+    // Metodos
+    public boolean verificarPedidoJaExiste(String nome){
+        if (!nome.equalsIgnoreCase("") && fila.length > 0){
+            for (int i = 0; i < totalPedidos; i++) {                
+                if (fila[i] != null){
+                    return fila[i].getCliente().equalsIgnoreCase(nome); // retorna true ou false
+                }                
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metodo enqueue para inserção no fim da fila
+     * @param pedido
+     * @return
+     */
+    public boolean adicionarPedidoNaFila(Pedido pedido) {
+        if (totalPedidos == capacidade){
+            this.aumentaVetorPedidos();
+        }
+
+        if (totalPedidos < capacidade) {
+            fila[totalPedidos] = pedido;
+            int idPedidoRecebido = fila[totalPedidos].getIdPedido(); // Guarda em `idPedidoRecebido` o id do último item da fila antes de incrementar, para usar nas mensagens
+            totalPedidos++;
+
+            System.out.println("[OK] Pedido #" + idPedidoRecebido + " Recebido com Sucesso!");
+            return true;
+        } else {
+            System.out.println("\n[ATENCAO] Pedido #" + pedido.getIdPedido() + " Não Recebido!");
+            return false;
+        }
+    }
+    
+    /**
+     * Aumenta a dimensão do vetor de pedidos
+     *
+     */
+    private void aumentaVetorPedidos(){
+        int aumentaCapacidade = capacidade + Math.round(capacidade * 1.5f);
+        auxFila = new Pedido[aumentaCapacidade];
+        
+        for (int i = 0; i < capacidade; i++) {
+            if (fila[i] != null){
+                auxFila[i] = fila[i];
+            }
+        }
+        
+        capacidade = aumentaCapacidade;
+        fila = auxFila;
+    }
+
+    /**
+     * Metodo dequeue para remoção do início da fila
+     * @return boolean
+     */
+    public boolean removerPedidoDaFila() {
+
+        // Guarda em `idPedidoRealizado` o id do primeiro item da fila antes de remover para usar nas mensagens
+        int idPedidoRealizado = fila[0].getIdPedido(); 
+
+        if (totalPedidos > 0) {
+
+            for (int i = 0; i < totalPedidos - 1; i++) {
+                fila[i] = fila[i + 1];
+            }
+            fila[totalPedidos - 1] = null;
+            totalPedidos--;
+
+            System.out.println("[OK] Pedido #" + idPedidoRealizado + " realizado!");
+            return true;
+
+        } else {
+            System.out.println("[AVISO] Nenhum pedido na Fila");
+            return false;
+        }
+    }
+
+    /**
+     * printQueue para exibição linear dos dados armazenados
+     * @return String
+     */
+    public String mostrarFilaPedidos() {
+        if (this.totalPedidos == 0){
+            return "\n[AVISO] Nenhum pedido na Fila";
+        }
+        String listaPedidos = "";
+        for (Pedido pedido : fila) {
+            if (pedido != null) {
+                listaPedidos += pedido.mostrarPedido() + "\n";
+            }
+        }
+        return listaPedidos;
+    }
+
+}
+package dadosEstruturados;
+
+public class Pedido {
+
+    // Atributos
+    static int idAux;
+    private int idPedido;
+    private String cliente;
+    private double valorTotal;
+    private int maxItens;
+    private int totalItens;
+    private ItemPedido itens[];
+    private ItemPedido auxItens[];
+    static String nomeObj;
+
+    // Construtores
+    public Pedido() {
+        this.idPedido = idAux++;
+        this.cliente = "N/A";
+        this.valorTotal = 0.0;
+        this.maxItens = 3;
+        this.totalItens = 0;
+        this.itens = new ItemPedido[maxItens];
+    }
+
+    public Pedido(String nomeCliente, int id) {
+        this.idPedido = id;
+        this.cliente = nomeCliente;
+        this.valorTotal = 0.0;
+        this.maxItens = 2;
+        this.totalItens = 0;
+        this.itens = new ItemPedido[maxItens];
+    }
+
+    // Getters
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    // Metodos
+    
+    /**
+     * Metodo para criar o pedido
+     * 
+     */
+    public void criarPedido(String nomeCliente){
+        if (!nomeCliente.equalsIgnoreCase("")){
+            ++idAux;
+            nomeObj = "PED00" + idAux;
+            Pedido nomeObj = new Pedido(nomeCliente, idAux);            
+        } else {
+            System.out.println("[ERRO] O PEDIDO PARA ESSE CLIENTE JÁ EXISTE!");
+        }
+    }
+    
+    /**
+     * Adiciona um item no final do vetor itens e retorna uma uma String
+     * (mensagem sucesso/erro)
+     *
+     * @param item
+     * @return String com mensagem de sucesso/erro
+     */
+    public void adicinarItemPedido(ItemPedido item) {
+        boolean itemAdicionado = false;
+
+        if (totalItens == maxItens) {
+            this.aumentaVetorItens();
+        }
+
+        if (totalItens < maxItens) {
+            itens[totalItens] = item;
+            totalItens++;
+            this.valorTotal = somaTotalPedido();
+            itemAdicionado = true;           
+        } else {
+            itemAdicionado = false;
+        }
+
+        // Mensagem Sucesso|Erro
+        if (itemAdicionado) {
+            System.out.println("Item adicionado no Pedido #" + idPedido);
+        } else {
+            System.out.println("Item " + item.getNome() + " não adicionado no Pedido #" + idPedido);
+        }
+
+    }
+
+    /**
+     * Aumenta a dimensão do vetor de itens
+     * 
+     */
+    private void aumentaVetorItens() {
+        //int aumentaMaxItens = maxItens * 2;
+        int aumentaMaxItens = maxItens + Math.round(maxItens * 1.5f);
+        auxItens = new ItemPedido[aumentaMaxItens];
+        
+        for (int i = 0; i < maxItens; i++) {
+            if (itens[i] != null){
+                auxItens[i] = itens[i];                
+            }
+        }
+        maxItens = aumentaMaxItens;
+        itens = auxItens;
+    }
+
+    /**
+     * Remove um item no pedido, reordena o vetor para não ter posições null no
+     * meio do vetor e retorna uma uma String (mensagem sucesso/erro)
+     *
+     * @param nomeItem
+     */
+    public void removerItemPedido(String nomeItem) {
+        if (totalItens > 0) {
+            // loop para encontrar item no vetor
+            for (int i = 0; i < totalItens - 1; i++) {
+                if (itens[i].getNome().compareToIgnoreCase(nomeItem) > 0) {
+                    deduzTotalPedido(itens[i].getValorUnitario());
+                    itens[i] = null;
+                }
+            }
+            // loop para reordenar itens no vetor
+            for (int i = 0; i < totalItens - 1; i++) {
+                if (itens[i] == null && itens[i + 1] != null) {
+                    itens[i] = itens[i + 1];
+                    itens[i + 1] = null;
+                }
+            }
+            totalItens--;
+            System.out.printf("Item removido do Pedido #%d!\n", idPedido);
+        } else {
+            System.out.printf("Item não removido o Pedido #%d!\n", idPedido);
+        }
+
+    }
+
+    /**
+     * Calcula o valor total do pedido quando um item é adicionado ao pedido
+     *
+     * @return double
+     */
+    private double somaTotalPedido() {
+        double somaValor = 0;
+        for (ItemPedido item : itens) {
+            if (item != null) {
+                somaValor += item.getValorUnitario();
+            }
+        }
+        return somaValor;
+    }
+
+    /**
+     * Calcula o valor total do pedido quando um item é removido do pedido
+     *
+     * @param valor
+     * @return double
+     */
+    private double deduzTotalPedido(double valor) {
+        double deduzValor = valor;
+        this.valorTotal -= deduzValor;
+        return this.valorTotal;
+    }
+
+    /**
+     * Mostra pedido com itens
+     *
+     * @return String
+     */
+    public String mostrarPedido() {
+        String listaItens = "";
+        for (ItemPedido item : itens) {
+            if (item != null) {
+                listaItens += item.imprimirItem() + "\n";
+            }
+        }
+        return "\n--------------------"
+                + "\nPEDIDO #" + this.idPedido + " | Cliente: " + this.cliente
+                + "\n--------------------"
+                + "\n" + listaItens
+                + "--------------------"
+                + "\nTotal Pedido: R$ " + this.valorTotal
+                + "\n";
+    }
+
+}
+package dadosEstruturados;
+
+public class ItemPedido {
+
+    // Atributos
+    private String nome;
+    private double valorUnitario;
+
+    // Construtores
+    public ItemPedido() {
+        this.nome = "N/D";
+        this.valorUnitario = 0.0;
+    }
+
+    public ItemPedido(String nome, double valorUnt) {
+        this.nome = nome;
+        this.valorUnitario = valorUnt;
+    }
+
+    // Getters | Setters
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nomeItem) {
+        this.nome = nomeItem;
+    }
+
+    public double getValorUnitario() {
+        return this.valorUnitario;
+    }
+
+    public void setvalorUnitario(String valor) {
+        this.nome = valor;
+    }
+
+    // Metodos
+    public String imprimirItem() {
+        return "Item: " + this.nome + " R$ " + this.valorUnitario;
+    }
+
+}

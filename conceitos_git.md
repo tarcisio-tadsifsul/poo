@@ -86,6 +86,7 @@ ou
 
 ---
 
+
 ### **Para desfazer um commit**
 
 `git reset --soft HEAD~1` (mantém as alterações no stage)
@@ -93,6 +94,25 @@ ou
 `git reset --hard HEAD~1` (descarta as alterações)
 
 ---
+
+### ***Salvar as alterações locais para recuperá-las depois***
+
+1. Guarda as alterações locais temporariamente
+`git stash`
+
+2. Atualiza o seu repositório com o código da outra máquina
+`git pull`
+
+3. Traz as suas alterações locais de volta
+`git stash pop`
+
+---
+
+### ***Jogar fora as alterações da máquina atual***
+
+ATENÇÃO: Isso vai apagar permanentemente todas as suas alterações locais não salvas!
+`git reset --hard HEAD`
+`git pull`
 
 ### **Para criar um repositório local**
 

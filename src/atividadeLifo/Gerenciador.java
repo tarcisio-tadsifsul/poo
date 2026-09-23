@@ -116,26 +116,26 @@ public class Gerenciador {
                     System.out.println("\n[7] Pesquisar Livro na Pilha");
                     do {
                         System.out.println("Pesquisa por:\n[1] ID \n[2] Nome \n[0] Sair");
-                        System.out.println("-> _");
+                        System.out.print("-> _");
                         opPesquisa = sc.next();
                         switch (opPesquisa) {
                             case "1":
                                 System.out.print("Informe o ID do Livro: _");
                                 idLivro = sc.nextInt();
                                 if (pilha.pesquisarLivroPilha("", idLivro)) {
-                                    System.out.println("[✓] O livro [ID-" + idLivro + "] está na pilha!");
+                                    System.out.println("[ok] O livro [ID-" + idLivro + "] está na pilha!");
                                 }
                             case "2":
                                 System.out.print("Informe o Nome do Livro: _");
-                                nomeLivro = sc.nextLine();
+                                nomeLivro = sc.next();
                                 if (pilha.pesquisarLivroPilha(nomeLivro, 0)) {
-                                    System.out.println("[✓] O livro '" + nomeLivro + "' está na pilha!");
+                                    System.out.println("[ok] O livro '" + nomeLivro + "' está na pilha!");
                                 }
                                 break;
                             case "0":
                                 break;
                             default:
-                                System.out.println("[XXX] Livro pesquisado não está na pilha!");
+                                System.out.println("[X] Livro pesquisado não está na pilha!");
                                 break;
                         }
                     } while (!opPesquisa.equals("0"));

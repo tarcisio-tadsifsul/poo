@@ -1,5 +1,5 @@
 public class ColecaoLivros {
-    private Livro colecao[];
+    private Livro[] colecao;
 
     public ColecaoLivros() {
         this.colecao = new Livro[5];
